@@ -122,4 +122,13 @@ header .slider__form span {
         width: 90%;
         /* right: ; */
     }
+
+    header .nav__list {
+        display: none;
+    }
+
+    header .group__buttons {
+        display: none;
+    }
+
 }

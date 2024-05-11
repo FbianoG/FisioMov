@@ -46,7 +46,7 @@
 
 .about__content p {
     width: 70%;
-    min-width: 350px;
+    /* min-width: 350px; */
     margin: 0 auto 20px;
     color: #fdfdfd;
     /* font-size: 16px; */

@@ -157,7 +157,7 @@
         width: 100%;
         overflow: auto;
         padding: 0 0 30px;
-
+        justify-content: flex-start;
 
 
 
