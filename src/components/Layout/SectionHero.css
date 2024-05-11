@@ -141,6 +141,7 @@
 @media screen and (max-width: 767px) {
   .hero {
     height: 100vh;
+    padding: 0 5%;
   }
 
   .hero button {
