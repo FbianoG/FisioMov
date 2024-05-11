@@ -1,0 +1,149 @@
+.hero {
+  height: 700px;
+  padding: 0 5% 50px;
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: linear-gradient(to bottom right, #99d7db, #788fdb, #9e95c7);
+}
+
+.hero__content {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero__content span {
+  color: #fdfdfd;
+  font-size: 32px;
+  font-weight: 300;
+  opacity: 0;
+
+  &:nth-child(1) {
+    position: relative;
+    top: 30px;
+    animation: sup 1s ease both 2s;
+  }
+
+  &:nth-last-child(1) {
+    position: relative;
+    top: -30px;
+    animation: des 1s ease both 2s;
+  }
+}
+
+.hero__content h1 {
+  color: #fdfdfd;
+  font-weight: 400;
+  font-size: 60px;
+  position: relative;
+  opacity: 0;
+  animation: letter 1.5s ease both 500ms;
+}
+
+.hero__content h1::before {
+  content: "";
+  width: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top: 1px solid #fff5;
+
+  animation: large 1.5s ease both 1s;
+}
+
+.hero__content h1::after {
+  content: "";
+  width: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-bottom: 1px solid #fff5;
+  animation: large 1.5s ease both 1s;
+}
+
+@keyframes large {
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes letter {
+  100% {
+    letter-spacing: 5px;
+    opacity: 1;
+  }
+}
+
+@keyframes des {
+  100% {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes sup {
+  100% {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+
+.hero button {
+  display: block;
+  padding: 20px;
+  margin: 0 auto;
+  font-size: 18px;
+  color: #fdfdfd;
+  background: none;
+  border-radius: 30px;
+  border: 1px solid #fff5;
+  -webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both 2.2s;
+  animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both 2.2s;
+}
+
+
+@-webkit-keyframes text-focus-in {
+  0% {
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes text-focus-in {
+  0% {
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 767px) {
+  .hero {
+    height: 100vh;
+  }
+
+  .hero button {
+    border-radius: 55px;
+  }
+}

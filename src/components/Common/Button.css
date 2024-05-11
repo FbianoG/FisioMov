@@ -1,0 +1,17 @@
+.main__button {
+    padding: 10px 30px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    background: #fff5;
+    color: #788fdb;
+    /* font-weight: 500; */
+    letter-spacing: 1px;
+    box-shadow: 2px 2px 5px #0001;
+    cursor: pointer;
+    transition: 400ms;
+
+    &:hover {
+        box-shadow: none;
+        filter: brightness(1.1);
+    }
+}

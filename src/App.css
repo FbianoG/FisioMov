@@ -1,0 +1,25 @@
+section {
+    padding: 0 5%;
+    margin: 0 0 100px;
+
+    &:nth-child(2) {
+        padding: 0;
+        margin: 0 0 0;
+    }
+}
+
+.section__divider {
+    width: 90%;
+    height: 1px;
+    margin: 150px auto;
+    display: block;
+    background: #0001;
+}
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 767px) {
+    .section__divider  {
+        margin: 50px auto;
+    }
+
+}
