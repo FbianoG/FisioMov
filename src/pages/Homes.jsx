@@ -4,6 +4,7 @@ import SectionAbout from '../components/Layout/SectionAbout'
 import SectionTerapy from '../components/Layout/SectionTerapy'
 import Header from '../components/Shared/Header'
 import SectionTeam from '../components/Layout/SectionTeam'
+import Footer from '../components/Shared/Footer'
 
 export default function Home() {
 
@@ -16,6 +17,8 @@ export default function Home() {
             <span className='section__divider'></span>
             <SectionTerapy />
             <SectionTeam />
+            <span className='section__divider'></span>
+            <Footer />
         </>
     )
 } 
