@@ -11,7 +11,7 @@ export default function Header() {
 
     return (
         <header>
-            <h1 className='header__logo'>FisioMov</h1>
+            <a href='/' className='header__logo'>FisioMov</a>
             <nav>
                 <ul className="nav__list">
                     <li className="nav__item"><a href=''>Início</a></li>
@@ -36,6 +36,8 @@ export default function Header() {
                     </form>
                 </div>
             }
+
+            <button className='header__btn-menu' onClick={() => setShowSlider(true)}><i className="fa-solid fa-bars"></i></button>
         </header >
     )
 }

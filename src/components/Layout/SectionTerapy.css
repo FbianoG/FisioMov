@@ -1,5 +1,4 @@
 .terapy {
-
     display: flex;
     gap: 50px;
 }
@@ -34,7 +33,6 @@
     display: flex;
     justify-content: space-evenly;
     position: relative;
-    margin: 0 0 200px;
 }
 
 .terapy__list-scroll {
@@ -67,6 +65,10 @@
     height: 100%;
     margin: 0 40px;
     background: #0002;
+
+    &:nth-last-child(2) {
+        display: none;
+    }
 }
 
 .terapy__card {

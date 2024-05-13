@@ -116,6 +116,19 @@ header .slider__form span {
 }
 
 
+.header__btn-menu {
+    background: none;
+    font-size: 32px;
+    border: none;
+    color: transparent;
+    background: linear-gradient(to bottom, #99d7db, #788fdb, #9e95c7);
+    background-clip: text;
+}
+
+
+
+
+
 /* MB <= 767 - TB <= 1023 - */
 @media screen and (max-width: 767px) {
     header .slider {
