@@ -4,10 +4,10 @@ export default function SectionTeam() {
 
     return (
         <section>
-            <h1 className='team__title'>Nossa Equipe de Fisioterapia</h1>
-            <p className='team__legend'>Desenvolvido por especialistas em fisioterapia e tecnologia, nosso compromisso é proporcionar a você uma experiência única de recuperação.</p>
+            <h1 className='team__title reveal'>Nossa Equipe de Fisioterapia</h1>
+            <p className='team__legend reveal'>Desenvolvido por especialistas em fisioterapia e tecnologia, nosso compromisso é proporcionar a você uma experiência única de recuperação.</p>
             <div className="team__list">
-                <div className="team__item">
+                <div className="team__item reveal">
                     <div className="team__item-img">
                         <img src='https://fbianog.github.io/FisioMov-Front/public/img/adrieli.jpeg' alt='' />
                     </div>
@@ -16,7 +16,7 @@ export default function SectionTeam() {
                         <span>Estudante de Fisioterapia Universidade Uni LaSalle</span>
                     </div>
                 </div>
-                <div className="team__item">
+                <div className="team__item reveal">
                     <div className="team__item-img">
                         <img src='https://fbianog.github.io/FisioMov-Front/public/img/barbara.jpeg' alt='' />
                     </div>
@@ -25,7 +25,7 @@ export default function SectionTeam() {
                         <span>Estudante de Fisioterapia Universidade Uni LaSalle</span>
                     </div>
                 </div>
-                <div className="team__item">
+                <div className="team__item reveal">
                     <div className="team__item-img">
                         <img src='https://fbianog.github.io/FisioMov-Front/public/img/yasmim.jpeg' alt='' />
                     </div>

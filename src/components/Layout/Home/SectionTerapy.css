@@ -149,6 +149,7 @@
 @media screen and (max-width: 767px) {
     .terapy__head {
         width: 100%;
+        text-align: center;
     }
 
     .terapy__divider {

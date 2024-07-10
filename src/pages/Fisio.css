@@ -1,0 +1,142 @@
+.fisio {
+    height: 100vh;
+    display: flex;
+    padding: 30px 0 30px 300px;
+    background: #e6e9f0;
+}
+
+.fisio .sideBar {
+    background: #2b343d;
+    width: 250px;
+    height: 100vh;
+    box-shadow: 2px 0 3px #0003;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.fisio .sideBar h1 {
+    background: #333b46;
+    color: #fdfdfd;
+    font-weight: 500;
+    padding: 20px 30px;
+    border-bottom: 3px solid #788fdb;
+}
+
+.fisio .sideBar__list {
+    /* height: 100%; */
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0;
+    list-style: none;
+
+}
+
+.fisio .sideBar__list li {
+    padding: 20px 30px;
+    color: #cbd4e0;
+    font-weight: 500;
+    cursor: pointer;
+
+    &:hover {
+        background: #212832;
+    }
+
+    &:nth-last-child(1) {
+        color: rgb(244, 62, 62);
+    }
+}
+
+.fisio .sideBar__list .active {
+    background: #212832;
+    position: relative;
+    overflow: hidden;
+}
+
+.fisio .sideBar__list .active::after {
+    content: '';
+    position: absolute;
+    right: -35px;
+    top: 5px;
+    background: #fdfdfd;
+    width: 50px;
+    height: 50px;
+    transform: rotate(45deg);
+}
+
+
+/* Lista */
+
+.fisio .patients__list {
+    width: 700px;
+    border: 1px solid #0002;
+    list-style: none;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.fisio .patients__list h2 {
+    padding: 20px 30px;
+    color: #333b46;
+}
+
+.fisio .patients__list-header {
+    width: 100%;
+    padding: 0px 30px 10px;
+    display: grid;
+    grid-template-columns: 350px 100px 100px;
+    border-bottom: 1px solid #0002;
+    color: #7e8fa1;
+    font-weight: 500;
+}
+
+.fisio .patients__list li {
+    padding: 20px 30px;
+    display: grid;
+    grid-template-columns: 350px 100px 100px 50px;
+    border-bottom: 1px solid #0002;
+    color: #666;
+    font-weight: 500;
+    font-size: 14px;
+
+    &:nth-last-child(1) {
+        border: none;
+    }
+}
+
+.fisio .patients__list li h4 {
+    font-weight: 500;
+    color: #555;
+    text-transform: capitalize;
+}
+
+
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 1100px) {
+    .fisio {
+        padding: 30px 5% 0 10%;
+    }
+
+    .fisio .sideBar {
+        transform: translate(-90%);
+        transition: 400ms;
+
+        &:hover {
+            transform: translate(0);
+        }
+    }
+
+    .fisio .patients__list {
+        width: 100%;
+        overflow: auto;
+    }
+
+    .fisio .patients__list-header {
+        width: max-content;
+    }
+
+    .fisio .patients__list li {
+        width: max-content;
+    }
+}

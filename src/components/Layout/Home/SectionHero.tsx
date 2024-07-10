@@ -10,7 +10,8 @@ export default function SectionHero() {
                     <h1>FISIOMOV</h1>
                     <span>MOVIMENTO</span>
                 </div>
-                <button>Sua saúde, em suas mãos, com o poder da IA ao seu lado.</button>
+                <span className='alert'>Sua saúde, em suas mãos, com o poder da IA ao seu lado.</span>
+                <button>Cadastre-se agora!</button>
             </div>
         </section>
 

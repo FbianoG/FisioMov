@@ -1,6 +1,6 @@
 header {
     width: 100%;
-    height: 70px;
+    height: 90px;
     padding: 0 5%;
     position: fixed;
     top: 0;
@@ -9,6 +9,7 @@ header {
     align-items: center;
     background: #fff;
     z-index: 99;
+    box-shadow: 0px 3px 5px #0001;
 }
 
 .header__logo {
@@ -53,7 +54,7 @@ header .slider {
     padding: 30px 40px;
     position: absolute;
     right: 5%;
-    top: 80px;
+    top: 100px;
     background: #fff;
     box-shadow: 2px 2px 10px #0001;
     border-radius: 10px;
@@ -117,6 +118,7 @@ header .slider__form span {
 
 
 .header__btn-menu {
+    display: none;
     background: none;
     font-size: 32px;
     border: none;
@@ -134,6 +136,10 @@ header .slider__form span {
     header .slider {
         width: 90%;
         /* right: ; */
+    }
+
+    .header__btn-menu {
+        display: block;
     }
 
     header .nav__list {

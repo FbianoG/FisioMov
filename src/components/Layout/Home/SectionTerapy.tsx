@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import './SectionTerapy.css'
-import { allCardTerapy } from '../../utils/CardTerapyObj'
+import { allCardTerapy } from '../../../utils/CardTerapyObj'
 import CardTerapy from './CardTerapy'
 
 export default function SectionTerapy() {
@@ -25,12 +25,12 @@ export default function SectionTerapy() {
     return (
         <section>
             <div className="terapy">
-                <div className="terapy__head">
+                <div className="terapy__head reveal">
                     <h2 className='terapy__head-title'>Nossos recursos terapêuticos</h2>
                     <span className="terapy__head-divider"></span>
                     <p className='terapy__head-legend'>Saiba um pouco mais sobre todos os nossos recursos</p>
                 </div>
-                <div className="terapy__list">
+                <div className="terapy__list reveal">
                     {cardTerapy.map((element, index) => {
                         if (window.innerWidth <= 767) return <CardTerapy key={element.title} data={element} />
 
