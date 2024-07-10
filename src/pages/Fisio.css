@@ -71,7 +71,7 @@
 /* MB <= 767 - TB <= 1023 - */
 @media screen and (max-width: 1100px) {
     .fisio {
-        padding: 30px 5% 0 10%;
+        padding: 30px 5% 0 5%;
     }
 
     .fisio .sideBar {

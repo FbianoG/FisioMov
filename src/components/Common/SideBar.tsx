@@ -35,6 +35,11 @@ const SideBar: React.FC<SideBarProps> = ({ user }) => {
                     <span>{user?.email}</span>
                 </div>
             </div>
+            {innerWidth < 1100 &&
+                <button title='Mostrar barra lateral' className="sideBar__btn">
+                    ☰
+                </button>
+            }
         </div>
     )
 }

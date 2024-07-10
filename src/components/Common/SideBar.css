@@ -28,7 +28,7 @@
  }
 
  .sideBar__list a {
-    width: 100%;
+     width: 100%;
      padding: 20px 30px;
      color: #cbd4e0;
      font-weight: 500;
@@ -90,15 +90,33 @@
  }
 
 
+ .sideBar__btn {
+     padding: 3px 10px;
+     position: fixed;
+     right: -60px;
+     top: 20px;
+     color: #fff;
+     font-size: 32px;
+     background: linear-gradient(to bottom right, #99d7db, #788fdb, #9e95c7);
+     border: none;
+     border-radius: 10px;
+     text-shadow: 3px 3px 5px #0003;
+ }
+
  /* MB <= 767 - TB <= 1023 - */
  @media screen and (max-width: 1100px) {
-     .fisio .sideBar {
-         transform: translate(-90%);
+     .sideBar {
+         transform: translate(-100%);
+         /* transform: translate(0); */
          transition: 400ms;
 
          &:hover {
              transform: translate(0);
          }
+     }
+
+     .sideBar:hover .sideBar__btn {
+         opacity: 0;
      }
 
  }

@@ -158,8 +158,8 @@
 /* MB <= 767 - TB <= 1023 - */
 @media screen and (max-width: 767px) {
   .hero {
-    height: 100vh;
-    padding: 0 5%;
+    height: 700px;
+    padding: 120px 5% 40px;
   }
 
   .hero .alert {
