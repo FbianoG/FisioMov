@@ -5,53 +5,56 @@ import { ActivitiesData, UserData } from '../interface/interface'
 import axios from 'axios'
 import { UrlBack } from '../api/api'
 
+import { useForm, SubmitHandler } from "react-hook-form";
+import { getUser } from '../api/user'
+import { createActivities, deleteActivities, FormData, getActivities } from '../api/activities'
+
+
+
 const Activities = () => {
+
+    const { register, handleSubmit } = useForm<FormData>();
 
     const [user, setUser] = useState<UserData>()
     const [activities, setActivities] = useState<ActivitiesData[]>([])
 
 
-    useEffect(() => { getUser(), getActivities() }, [])
+    useEffect(() => { loadUser(), loadActivities() }, [])
 
-    const getUser = async () => {
-        const token = sessionStorage.getItem('Token')
+    const loadUser = async () => {
         try {
-            const response = await axios.post(`${UrlBack}/getUser`, { token })
-            setUser(response.data.user)
+            const response = await getUser()
+            setUser(response)
+            console.log(response)
         } catch (error) {
             console.log(error)
         }
     }
 
-    const getActivities = async () => {
-        const token = sessionStorage.getItem('Token')
+    const loadActivities = async () => {
         try {
-            const response = await axios.post(`${UrlBack}/getAllActivity`, { token })
-            setActivities(response.data)
-            console.log(response.data)
+            const response = await getActivities()
+            setActivities(response)
+            loadActivities()
         } catch (error) {
             console.log(error)
         }
     }
 
-    const createActivities = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        const token = sessionStorage.getItem('Token')
-        const field = e.currentTarget as HTMLFormElement;
+    const createAct = async (data: FormData) => {
         try {
-            const response = await axios.post(`${UrlBack}/createAct`, { name: field.name.value, web: field.name.value, category: field.category.value, token })
-            getActivities()
+            const response = await createActivities(data)
+            loadUser()
         } catch (error) {
             console.log(error)
         }
     }
 
 
-    const deleteActivities = async (id: string) => {
-        const token = sessionStorage.getItem('Token')
+    const deleteAct = async (id: string) => {
         try {
-            const response = await axios.post(`${UrlBack}/deleteAct`, { _id: id, token })
-            getActivities()
+            const response = await deleteActivities(id)
+            loadUser()
         } catch (error) {
             console.log(error)
         }
@@ -62,23 +65,23 @@ const Activities = () => {
         <div className="activities">
             <SideBar user={user} />
             <h2>Gerenciar Atividades</h2>
-            <form onSubmit={createActivities}>
-                <input type='text' name='name' />
-                <input type='text' name='web' />
-                <select name="category">
+            <form onSubmit={handleSubmit(createAct)}>
+                <input type='text' {...register('name')} />
+                <input type='text' {...register('web')} />
+                <select {...register('category')}>
                     <option value="lw">Inferiores</option>
                     <option value="hg">Superiores</option>
                 </select>
                 <button type="submit">Criar</button>
             </form>
             <ul className="list">
-                {activities.map(element => (
-                    <li className='list__item'>
+                {activities && activities.map(element => (
+                    <li className='list__item' key={element._id}>
                         <div className="list__item-data">
                             <p>{element.name}</p>
                             <a href={element.web} target='_blank'>{element.web}</a>
                         </div>
-                        <button onClick={() => deleteActivities(element._id)}>Del</button>
+                        <button onClick={() => deleteAct(element._id)}>Del</button>
 
                     </li>
                 ))}
