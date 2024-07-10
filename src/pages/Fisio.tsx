@@ -67,7 +67,7 @@ const Fisio = () => {
                     <span>Idade</span>
                     <span>Status</span>
                 </div>
-                {allPatients && allPatients.map(element => (
+                {allPatients.map(element => (
                     <li key={element._id}>
                         <h4>{element.name}</h4>
                         <span>{((new Date().getTime() - new Date(element.nasc).getTime()) / 1000 / 60 / 60 / 24 / 365.25).toFixed(0)} anos</span>
@@ -77,7 +77,7 @@ const Fisio = () => {
                 ))}
             </ul>
 
-            {showModal && <Modal patient={patientEdit} activity={activities} onClick={() => setShowModal(!showModal)} functions={{ getPatients, getActivities }} />}
+            {showModal && patientEdit && <Modal patient={patientEdit} activity={activities} onClick={setShowModal} functions={{ getPatients, getActivities }} />}
         </div>
     )
 }

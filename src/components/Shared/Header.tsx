@@ -14,11 +14,11 @@ const Header = () => {
     const [showSlider, setShowSlider] = useState(false)
 
 
-    const handleLogin = async (e: any) => {
+    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        const email = e.target.email.value
-        const password = e.target.password.value
-
+        const field = e.currentTarget as HTMLFormElement;
+        const email = field.email.value
+        const password = field.password.value
         try {
             const response = await axios.post(`${UrlBack}/login`, { email, password })
             sessionStorage.setItem('Token', response.data.token)
