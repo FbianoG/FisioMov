@@ -9,6 +9,13 @@ export interface FormData {
     category: string
 }
 
+export interface FormDataSendAct {
+    name?: string
+    qtd: number
+    series: number
+    id: string
+}
+
 const getActivities = async () => {
     try {
         const response = await axios.post(`${UrlBack}/getAllActivity`)
@@ -44,4 +51,27 @@ const deleteActivities = async (id: string) => {
 
 
 
-export { getActivities, createActivities, deleteActivities }
+
+const sendActivity = async (data: FormDataSendAct, patientId: string) => {
+    try {
+        const response = await axios.post(`${UrlBack}/sendActivity`, { data, patientId })
+        return response.data
+    } catch (error: any) {
+        if (error.response) throw new Error(error.response.data.message)
+        else if (error.request) throw new Error("Error de rede. Tente novamente.")
+        else throw new Error(error.message)
+    }
+}
+
+const deleteActivity = async (id: string, actId: string) => {
+    try {
+        const response = await axios.post(`${UrlBack}/deleteActivity`, { patientId: id, actId })
+        return response.data
+    } catch (error: any) {
+        if (error.response) throw new Error(error.response.data.message)
+        else if (error.request) throw new Error("Error de rede. Tente novamente.")
+        else throw new Error(error.message)
+    }
+}
+
+export { getActivities, createActivities, deleteActivities, sendActivity, deleteActivity }

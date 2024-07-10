@@ -1,7 +1,7 @@
 interface Procedure {
     id: string
-    series: number,
-    qtd: number
+    series: string,
+    qtd: string
 }
 
 export interface UserData {

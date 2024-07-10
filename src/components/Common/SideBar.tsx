@@ -29,7 +29,7 @@ const SideBar: React.FC<SideBarProps> = ({ user }) => {
                 </ul>
             }
             <div className="userItem">
-                <img src={user?.src} alt='' />
+                <img src={user?.src} alt='foto perfil' />
                 <div className="userItem__data">
                     <p>{user?.name.split(' ').slice(0, 1)} {user?.name.split(' ').slice(1, 2).join('').slice(0, 1)}.</p>
                     <span>{user?.email}</span>

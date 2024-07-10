@@ -39,3 +39,12 @@
 .activities .list__item button {
     cursor: pointer;
 }
+
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 767px) {
+
+    .activities {
+        padding: 30px 5% ;
+    }
+}

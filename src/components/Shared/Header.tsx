@@ -4,33 +4,28 @@ import './Header.css'
 import axios from 'axios'
 import { UrlBack } from '../../api/api'
 
+import { useForm, SubmitHandler } from "react-hook-form";
+import { FormLoginData, login } from '../../api/user'
+
+
 const Header: React.FC = () => {
     const [showSlider, setShowSlider] = useState(false)
 
-    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        const formData = new FormData(e.currentTarget)
-        const email = formData.get('email') as string
-        const password = formData.get('password') as string
+    const { register, handleSubmit, reset } = useForm<FormLoginData>();
 
+    const handleLogin = async (data: FormLoginData) => {
         try {
-            const response = await axios.post(`${UrlBack}/login`, { email, password })
-            sessionStorage.setItem('Token', response.data.token)
-            if (response.data.patient) {
-                location.href = '/patient'
-            } else {
-                location.href = '/fisio'
-            }
-        } catch (error: any) {
-            if (error.response) {
-                console.log(error.response.data.message) // qualquer erro que volte com resposta do servidor
-            } else if (error.request) {
-                console.log('error de rede') // error de rede ou link inativo
-            } else {
-                console.log(error) // erro que não bata uma condição ex: sem token
-            }
+            const response = await login(data)
+            reset()
+            sessionStorage.setItem('Token', response.token)
+            if (response.patient) location.href = '/patient'
+            else location.href = '/fisio'
+        } catch (error) {
+            console.log(error)
         }
     }
+
+
     return (
         <header>
             <a href='/' className='header__logo'>FisioMov</a>
@@ -47,11 +42,11 @@ const Header: React.FC = () => {
             </div>
             {showSlider &&
                 <div className="slider">
-                    <form className='slider__form' onSubmit={(e) => handleLogin(e)}>
+                    <form className='slider__form' onSubmit={handleSubmit(handleLogin)}>
                         <label htmlFor="email" className="slider__form-label">Email</label>
-                        <input className="slider__form-input" type='text' name='email' id='email' />
+                        <input className="slider__form-input" type='text' id='email' {...register('email')} />
                         <label htmlFor="password" className="slider__form-label">Senha</label>
-                        <input className="slider__form-input" type='password' name='password' id='password' />
+                        <input className="slider__form-input" type='password' id='password' {...register('password')} />
                         <a href="">Esqueceu sua senha ?</a>
                         <button type='submit'>Entrar</button>
                         <span title='Esconder menu' onClick={() => setShowSlider(false)}><i className="fa-solid fa-chevron-up"></i></span>

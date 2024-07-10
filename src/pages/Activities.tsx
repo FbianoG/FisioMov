@@ -13,7 +13,7 @@ import { createActivities, deleteActivities, FormData, getActivities } from '../
 
 const Activities = () => {
 
-    const { register, handleSubmit } = useForm<FormData>();
+    const { register, handleSubmit, reset } = useForm<FormData>();
 
     const [user, setUser] = useState<UserData>()
     const [activities, setActivities] = useState<ActivitiesData[]>([])
@@ -35,7 +35,6 @@ const Activities = () => {
         try {
             const response = await getActivities()
             setActivities(response)
-            loadActivities()
         } catch (error) {
             console.log(error)
         }
@@ -44,47 +43,47 @@ const Activities = () => {
     const createAct = async (data: FormData) => {
         try {
             const response = await createActivities(data)
-            loadUser()
+            loadActivities()
+            reset()
         } catch (error) {
             console.log(error)
         }
     }
-
 
     const deleteAct = async (id: string) => {
         try {
             const response = await deleteActivities(id)
-            loadUser()
+            loadActivities()
         } catch (error) {
             console.log(error)
         }
     }
 
-
     return (
-        <div className="activities">
+        <div className="fisio">
             <SideBar user={user} />
-            <h2>Gerenciar Atividades</h2>
-            <form onSubmit={handleSubmit(createAct)}>
-                <input type='text' {...register('name')} />
-                <input type='text' {...register('web')} />
-                <select {...register('category')}>
-                    <option value="lw">Inferiores</option>
-                    <option value="hg">Superiores</option>
-                </select>
-                <button type="submit">Criar</button>
-            </form>
-            <ul className="list">
-                {activities && activities.map(element => (
-                    <li className='list__item' key={element._id}>
-                        <div className="list__item-data">
-                            <p>{element.name}</p>
-                            <a href={element.web} target='_blank'>{element.web}</a>
-                        </div>
-                        <button onClick={() => deleteAct(element._id)}>Del</button>
-
-                    </li>
-                ))}
+            <ul className="patients__list">
+                <h2>Gerenciar Atividades</h2>
+                <form style={{ display: 'flex', margin: '0 auto', flexWrap: 'wrap' }} onSubmit={handleSubmit(createAct)}>
+                    <input type='text' {...register('name')} />
+                    <input type='text' {...register('web')} />
+                    <select {...register('category')}>
+                        <option value="lw">Inferiores</option>
+                        <option value="hg">Superiores</option>
+                    </select>
+                    <button type="submit">Criar</button>
+                </form>
+                <ul>
+                    {activities && activities.map(element => (
+                        <li key={element._id}>
+                            <div className="item__data">
+                                <h4>{element.name}</h4>
+                                <a href={element.web} target='_blank'>{element.web}</a>
+                            </div>
+                            <button title='Excluir atividade' onClick={() => deleteAct(element._id)}>❌</button>
+                        </li>
+                    ))}
+                </ul>
             </ul>
         </div>
     )
