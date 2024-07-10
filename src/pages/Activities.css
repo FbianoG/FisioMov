@@ -1,0 +1,41 @@
+.activities {
+    padding: 30px 5% 30px 300px;
+}
+
+.activities h2{
+    color: #555;
+    font-weight: 500;
+}
+
+.activities .list__item {
+    padding: 20px 10px;
+    display: flex;
+    border-bottom: 1px solid #0002;
+    justify-content: space-between;
+
+    &:hover {
+        background: #f9f9f9;
+    }
+}
+
+.activities .list__item-data p {
+    font-weight: 500;
+    text-transform: capitalize;
+    color: #444;
+}
+
+.activities .list__item-data a {
+    font-size: 12px;
+    text-transform: capitalize;
+    color: #444;
+    text-decoration: none;
+    transition: 400ms;
+
+    &:hover {
+        opacity: .7;
+    }
+}
+
+.activities .list__item button {
+    cursor: pointer;
+}

@@ -6,6 +6,7 @@ import './App.css'
 import Home from './pages/Homes'
 import Fisio from './pages/Fisio';
 import Patient from './pages/Patient';
+import Activities from './pages/Activities';
 
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/fisio" element={<Fisio />} />
           <Route path="/patient" element={<Patient />} />
+          <Route path="/activities" element={<Activities />} />
         </Routes>
       </Router>
 

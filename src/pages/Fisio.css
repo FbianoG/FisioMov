@@ -6,7 +6,10 @@
 }
 
 .fisio .patients__list {
-    width: 700px;
+    width: 100%;
+    max-width: 1000px;
+    min-width: 700px;
+    margin: 0 auto ;
     border: 1px solid #0002;
     list-style: none;
     border-radius: 5px;
