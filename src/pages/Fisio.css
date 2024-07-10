@@ -74,13 +74,8 @@
         padding: 30px 5% 0 5%;
     }
 
-    .fisio .sideBar {
-        transform: translate(-90%);
-        transition: 400ms;
-
-        &:hover {
-            transform: translate(0);
-        }
+    .fisio .patients__list h2 {
+        text-align: center;
     }
 
     .fisio .patients__list {
