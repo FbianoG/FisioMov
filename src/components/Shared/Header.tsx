@@ -1,36 +1,36 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Button from '../Common/Button'
 import './Header.css'
 import axios from 'axios'
 import { UrlBack } from '../../api/api'
 
-interface FormLogin {
-    email: string
-    password: string
-}
-
-const Header = () => {
-
+const Header: React.FC = () => {
     const [showSlider, setShowSlider] = useState(false)
-
 
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        const formData = new FormData(e.currentTarget);
-        const email = formData.get('email') as string;
-        const password = formData.get('password') as string;
+        const formData = new FormData(e.currentTarget)
+        const email = formData.get('email') as string
+        const password = formData.get('password') as string
+
         try {
             const response = await axios.post(`${UrlBack}/login`, { email, password })
             sessionStorage.setItem('Token', response.data.token)
-            if (response.data.patient) location.href = '/patient'
-            else location.href = '/fisio'
+            if (response.data.patient) {
+                location.href = '/patient'
+            } else {
+                location.href = '/fisio'
+            }
         } catch (error: any) {
-            if (error.response) console.log(error.response.data.message) // qualquer erro que volte com resposta do servidor
-            else if (error.request) console.log('error de rede') // error de rede ou link inativo
-            else console.log(error) // erro que não bata uma condição ex: sem token
+            if (error.response) {
+                console.log(error.response.data.message) // qualquer erro que volte com resposta do servidor
+            } else if (error.request) {
+                console.log('error de rede') // error de rede ou link inativo
+            } else {
+                console.log(error) // erro que não bata uma condição ex: sem token
+            }
         }
     }
-
     return (
         <header>
             <a href='/' className='header__logo'>FisioMov</a>
@@ -51,16 +51,15 @@ const Header = () => {
                         <label htmlFor="email" className="slider__form-label">Email</label>
                         <input className="slider__form-input" type='text' name='email' id='email' />
                         <label htmlFor="password" className="slider__form-label">Senha</label>
-                        <input className="slider__form-input" type='password' id='password' />
+                        <input className="slider__form-input" type='password' name='password' id='password' />
                         <a href="">Esqueceu sua senha ?</a>
                         <button type='submit'>Entrar</button>
                         <span title='Esconder menu' onClick={() => setShowSlider(false)}><i className="fa-solid fa-chevron-up"></i></span>
                     </form>
                 </div>
             }
-
             <button title='Menu' className='header__btn-menu' onClick={() => setShowSlider(true)}><i className="fa-solid fa-bars"></i></button>
-        </header >
+        </header>
     )
 }
 
