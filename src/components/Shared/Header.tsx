@@ -16,9 +16,9 @@ const Header = () => {
 
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        const field = e.currentTarget as HTMLFormElement;
-        const email = field.email.value
-        const password = field.password.value
+        const formData = new FormData(e.currentTarget);
+        const email = formData.get('email') as string;
+        const password = formData.get('password') as string;
         try {
             const response = await axios.post(`${UrlBack}/login`, { email, password })
             sessionStorage.setItem('Token', response.data.token)
