@@ -1,0 +1,59 @@
+.patient {
+    padding: 30px 5% 30px 300px;
+}
+
+.patient .activities h2 {
+    padding: 0 20px ;
+    font-size: 32px;
+    font-weight: 500;
+    background: linear-gradient(to bottom right, #99d7db, #788fdb, #9e95c7);
+    background-clip: text;
+    color: transparent;
+}
+
+.patient .activities {
+    margin: 0 auto;
+    width: 700px;
+
+}
+
+.patient .activities__list li {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid #0002;
+    padding: 20px;
+    transition: 400ms;
+
+    &:hover {
+        background: #f9f9f9;
+    }
+}
+
+.patient .activities__item-data p {
+    font-size: 18px;
+    color: #666;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+
+.patient .activities__item-data span {
+    margin: 0 20px 0 0;
+    color: #777;
+    font-size: 14px;
+}
+
+.patient .activities__item-data span strong {
+    font-weight: 500;
+}
+
+.patient .activities__list a {
+    cursor: pointer;
+    transition: 400ms;
+    margin: 0 0 0 auto;
+
+    &:hover {
+        opacity: .7;
+    }
+}

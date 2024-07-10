@@ -5,6 +5,7 @@ import './App.css'
 
 import Home from './pages/Homes'
 import Fisio from './pages/Fisio';
+import Patient from './pages/Patient';
 
 
 const App = () => {
@@ -15,7 +16,6 @@ const App = () => {
   }
 
   useEffect(() => {
-
     ScrollReveal().reveal('.reveal', options)
   }, [])
 
@@ -25,6 +25,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/fisio" element={<Fisio />} />
+          <Route path="/patient" element={<Patient />} />
         </Routes>
       </Router>
 

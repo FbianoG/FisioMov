@@ -4,24 +4,40 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { UrlBack } from "../api/api"
 import Modal from "../components/Common/Modal"
+import SideBar from '../components/Common/SideBar'
+import { ActivitiesData, PatientData, UserData } from '../interface/interface'
 
 
 const Fisio = () => {
 
     const [showModal, setShowModal] = useState<boolean>(false)
-    const [patientEdit, setPatientEdit] = useState<any>(null)
+    const [patientEdit, setPatientEdit] = useState<PatientData>()
 
-    const [allPatients, setAllPatients] = useState<any>(null)
-    const [allActivities, setAllActivities] = useState<any>(null)
+    const [allPatients, setAllPatients] = useState<PatientData[]>([])
+    const [activities, setActivities] = useState<ActivitiesData[]>([])
+
+    const [user, setUser] = useState<UserData>()
 
     useEffect(() => {
-        const token = sessionStorage.getItem('Token')
-        if (token) getPatients(token), getActivities(token)
+        getPatients()
+        getActivities()
+        getUser()
     }, [])
 
-    const getPatients = async (e: string) => {
+    const getUser = async () => {
+        const token = sessionStorage.getItem('Token')
         try {
-            const response = await axios.post(`${UrlBack}/getAllUsers`, { token: e })
+            const response = await axios.post(`${UrlBack}/getUser`, { token })
+            setUser(response.data.user)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const getPatients = async () => {
+        const token = sessionStorage.getItem('Token')
+        try {
+            const response = await axios.post(`${UrlBack}/getAllUsers`, { token })
             console.log(response.data)
             setAllPatients(response.data.allPatients)
             if (patientEdit) setPatientEdit(response.data.allPatients.find((element: any) => element._id === patientEdit._id))
@@ -30,11 +46,11 @@ const Fisio = () => {
         }
     }
 
-    const getActivities = async (e: string) => {
+    const getActivities = async () => {
+        const token = sessionStorage.getItem('Token')
         try {
-            const response = await axios.post(`${UrlBack}/getAllActivity`, { token: e })
-            console.log(response.data)
-            setAllActivities(response.data.allAct)
+            const response = await axios.post(`${UrlBack}/getAllActivity`, { token })
+            setActivities(response.data)
         } catch (error) {
             console.log(error)
         }
@@ -43,15 +59,7 @@ const Fisio = () => {
 
     return (
         <div className="fisio">
-            <div className="sideBar">
-                <h1>FisioMov</h1>
-                <ul className="sideBar__list">
-                    <li className='active'>Pacientes</li>
-                    <li>Dashboard</li>
-                    <li>Configurações</li>
-                    <li>Sair</li>
-                </ul>
-            </div>
+            <SideBar user={user} />
             <ul className="patients__list">
                 <h2>Lista de Pacientes</h2>
                 <div className="patients__list-header">
@@ -60,16 +68,16 @@ const Fisio = () => {
                     <span>Status</span>
                 </div>
                 {allPatients && allPatients.map(element => (
-                    <li>
+                    <li key={element._id}>
                         <h4>{element.name}</h4>
                         <span>{((new Date().getTime() - new Date(element.nasc).getTime()) / 1000 / 60 / 60 / 24 / 365.25).toFixed(0)} anos</span>
                         <span>Ativo</span>
-                        <button onClick={() => { setShowModal(!showModal), setPatientEdit(element) }}>Incluir</button>
+                        <button title='Adicionar atividades' onClick={() => { setShowModal(!showModal), setPatientEdit(element) }}>▶️</button>
                     </li>
                 ))}
             </ul>
 
-            {showModal && <Modal patient={patientEdit} activity={allActivities} onClick={() => setShowModal(!showModal)} functions={{ getPatients, getActivities }} />}
+            {showModal && <Modal patient={patientEdit} activity={activities} onClick={() => setShowModal(!showModal)} functions={{ getPatients, getActivities }} />}
         </div>
     )
 }

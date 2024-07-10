@@ -17,7 +17,7 @@ footer .banner {
     background: linear-gradient(to bottom right, #99d7db, #788fdb, #9e95c7);
     border-radius: 5px;
     z-index: 1;
-    box-shadow: -20px -20px 0px 5px #ddd;
+    box-shadow: -20px -20px 0px 5px #ccc5;
 }
 
 
@@ -29,8 +29,8 @@ footer .banner__data h2 {
 }
 
 footer .banner__data p {
-    color: #222;
-    font-weight: 500;
+    color: #333;
+    /* font-weight: 00; */
 }
 
 footer .banner button {

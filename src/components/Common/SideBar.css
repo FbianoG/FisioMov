@@ -1,0 +1,104 @@
+ .sideBar {
+     background: #2b343d;
+     width: 250px;
+     height: 100vh;
+     box-shadow: 2px 0 3px #0003;
+     position: fixed;
+     left: 0;
+     top: 0;
+     display: flex;
+     flex-direction: column;
+ }
+
+ .sideBar h1 {
+     background: #333b46;
+     color: #fdfdfd;
+     font-weight: 500;
+     padding: 20px 30px;
+     border-bottom: 3px solid #788fdb;
+ }
+
+ .sideBar__list {
+     /* height: 100%; */
+     display: flex;
+     flex-direction: column;
+     padding: 30px 0;
+     list-style: none;
+
+ }
+
+ .sideBar__list a {
+    width: 100%;
+     padding: 20px 30px;
+     color: #cbd4e0;
+     font-weight: 500;
+     text-decoration: none;
+     cursor: pointer;
+
+     &:hover {
+         background: #323a47;
+     }
+
+     &:nth-last-child(1) {
+         color: rgb(244, 62, 62);
+     }
+ }
+
+
+
+ .sideBar__list .active {
+     background: #212832;
+     position: relative;
+     overflow: hidden;
+ }
+
+ .sideBar__list .active::after {
+     content: '';
+     position: absolute;
+     right: -35px;
+     top: 5px;
+     background: #fdfdfd;
+     width: 50px;
+     height: 50px;
+     transform: rotate(45deg);
+ }
+
+ .sideBar .userItem {
+     margin: auto 0 0 0;
+     padding: 20px 10px;
+     display: flex;
+     align-items: center;
+     gap: 10px;
+ }
+
+ .sideBar .userItem img {
+     width: 50px;
+     height: 50px;
+     border-radius: 50%;
+     border: 2px solid #788fdb;
+ }
+
+ .sideBar .userItem__data p {
+     color: #fdfdfd;
+     text-transform: capitalize;
+     font-weight: 500;
+ }
+
+ .sideBar .userItem__data span {
+     font-size: 14px;
+     color: #aaa;
+ }
+
+
+ /* MB <= 767 - TB <= 1023 - */
+ @media screen and (max-width: 1100px) {
+     .fisio .sideBar {
+         transform: translate(-90%);
+         transition: 400ms;
+
+         &:hover {
+             transform: translate(0);
+         }
+     }
+
+ }
