@@ -8,6 +8,7 @@ import Fisio from './pages/Fisio';
 import Patient from './pages/Patient';
 import Activities from './pages/Activities';
 import Dashboard from './pages/Dashboard';
+import Register from './pages/Register';
 
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/patient" element={<Patient />} />
           <Route path="/activities" element={<Activities />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </Router>
 

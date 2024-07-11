@@ -1,55 +1,4 @@
-header {
-    width: 100%;
-    height: 90px;
-    padding: 0 5%;
-    position: fixed;
-    top: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #fff;
-    z-index: 99;
-    box-shadow: 0px 3px 5px #0001;
-}
-
-.header__logo {
-    width: 250px;
-    color: transparent;
-    background: linear-gradient(to bottom right, #99d7db, #788fdb, #9e95c7);
-    background-clip: text;
-    font-size: 32px;
-    font-weight: 400;
-}
-
-header .nav__list {
-    display: flex;
-    gap: 50px;
-}
-
-header .nav__item {
-    list-style: none;
-    color: transparent;
-    background: linear-gradient(to bottom right, #99d7db, #788fdb, #9e95c7);
-    background-clip: text;
-    font-size: 20px;
-    transition: 400ms;
-
-    &:hover {
-        opacity: 0.5;
-    }
-
-    & a {
-        color: inherit;
-        text-decoration: inherit;
-    }
-}
-
-header .group__buttons {
-    display: flex;
-    gap: 30px;
-}
-
-header .slider {
+.slider {
     width: 350px;
     padding: 30px 40px;
     position: absolute;
@@ -70,19 +19,19 @@ header .slider {
     }
 }
 
-header .slider__form {
+.slider .slider__form {
     display: flex;
     gap: 10px;
     align-items: center;
     flex-direction: column;
 }
 
-header .slider__form-label {
+.slider .slider__form-label {
     color: #788fdb;
     width: 100%;
 }
 
-header .slider__form-input {
+.slider .slider__form-input {
     padding: 5px;
     width: 100%;
     font-size: 16px;
@@ -93,7 +42,7 @@ header .slider__form-input {
     outline: none;
 }
 
-header .slider__form button {
+.slider .slider__form button {
     width: 100%;
     margin: 0 0 10px;
     padding: 5px 20px;
@@ -115,7 +64,7 @@ header .slider__form button {
     }
 }
 
-header .slider__form span {
+.slider .slider__form span {
     position: absolute;
     bottom: 0;
     color: #788fdb;
@@ -130,7 +79,7 @@ header .slider__form span {
     }
 }
 
-.header__btn-menu {
+..slider__btn-menu {
     display: none;
     background: none;
     font-size: 32px;
@@ -159,34 +108,14 @@ header .slider__form span {
     &:nth-child(2) {
         animation-delay: 300ms;
     }
+
     &:nth-child(3) {
         animation-delay: 600ms;
     }
 }
+
 @keyframes loading {
-    100%{
+    100% {
         transform: translateY(0%);
     }
-}
-
-
-/* MB <= 767 - TB <= 1023 - */
-@media screen and (max-width: 767px) {
-    header .slider {
-        width: 90%;
-        /* right: ; */
-    }
-
-    .header__btn-menu {
-        display: block;
-    }
-
-    header .nav__list {
-        display: none;
-    }
-
-    header .group__buttons {
-        display: none;
-    }
-
 }

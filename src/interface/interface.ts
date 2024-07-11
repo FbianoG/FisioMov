@@ -6,7 +6,7 @@ interface Procedure {
 
 export interface UserData {
     email: string
-    isPacient: boolean
+    isPatient: boolean
     message: string
     name: string
     nasc: Date | string

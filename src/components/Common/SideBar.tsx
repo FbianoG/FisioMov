@@ -19,7 +19,7 @@ const SideBar: React.FC<SideBarProps> = ({ user }) => {
         <div className="sideBar">
             <h1>FisioMov</h1>
 
-            {!user?.isPacient &&
+            {!user?.isPatient &&
                 <ul className="sideBar__list">
                     <a href='/fisio' className={verifyLinkActive('/fisio')}>Pacientes</a >
                     <a href='/activities' className={verifyLinkActive('/activities')}>Atividades</a>
@@ -28,7 +28,7 @@ const SideBar: React.FC<SideBarProps> = ({ user }) => {
                     <a href='/'>Sair</a>
                 </ul>
             }
-            {user?.isPacient &&
+            {user?.isPatient &&
                 <ul className="sideBar__list">
                     <a href='/patient' className={verifyLinkActive('/patient')}>Atividades</a>
                     <a href='' className={verifyLinkActive('/config')}>Configurações</a>

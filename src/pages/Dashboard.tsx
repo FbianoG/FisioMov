@@ -16,6 +16,7 @@ const Dashboard = () => {
     const loadPage = async () => {
         try {
             const [us, ac, pt] = await Promise.all([getUser(), getActivities(), getPatients()])
+            if (us.isPatient) location.href = '/'
             setUser(us)
             setPatients(pt.allPatients)
             setActivities(ac)
@@ -28,11 +29,10 @@ const Dashboard = () => {
         if (!patients || patients.length === 0) return 0
         const allAge = patients.map(element => Number(((new Date().getTime() - new Date(element.nasc).getTime()) / 1000 / 60 / 60 / 24 / 365.25).toFixed(0)))
         const sumAge: number = allAge?.reduce((acc, att) => acc + att, 0)
-        return sumAge / allAge.length
+        return (sumAge / allAge.length).toFixed(1)
     }
 
     const dataGraph = () => {
-
         const act: { count: number; name: string }[] = []
         activities?.forEach(activity => {
             let num = 0
@@ -53,11 +53,11 @@ const Dashboard = () => {
             <SideBar user={user} />
             {patients &&
                 <div className='card'>
-                    <span><strong>📅</strong> {averageAge()} </span>
+                    <span><strong></strong> {averageAge()} </span>
                     <p>Média de idade</p>
                 </div>}
             <div className="graph">
-                <h3>Atividades mais usadas </h3>
+                <h3>Atividades Mais Usadas </h3>
                 <div className="graph__list">
                     {activities &&
                         dataGraph().map(element => (

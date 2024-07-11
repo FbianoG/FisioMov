@@ -6,24 +6,14 @@ import { UrlBack } from '../../api/api'
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FormLoginData, login } from '../../api/user'
+import Slider from './Slider'
 
 
 const Header: React.FC = () => {
+
+
     const [showSlider, setShowSlider] = useState(false)
-
-    const { register, handleSubmit, reset } = useForm<FormLoginData>();
-
-    const handleLogin = async (data: FormLoginData) => {
-        try {
-            const response = await login(data)
-            reset()
-            sessionStorage.setItem('Token', response.token)
-            if (response.patient) location.href = '/patient'
-            else location.href = '/fisio'
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    const [typeSlider, settypeSlider] = useState<'access' | 'register'>('access')
 
 
     return (
@@ -37,23 +27,12 @@ const Header: React.FC = () => {
                 </ul>
             </nav>
             <div className="group__buttons">
-                <Button text='Acessar' onclick={() => setShowSlider(!showSlider)} />
-                <button className='main__button'>Registrar</button>
+                <Button text='Acessar' onclick={() => { setShowSlider(true), settypeSlider('access') }} />
+                <Button text='Registrar' onclick={() => { setShowSlider(true), settypeSlider('register') }} />
+                {/* <button className='main__button' onclick={() => { setShowSlider(true), settypeSlider('register') }}>Registar</button> */}
             </div>
-            {showSlider &&
-                <div className="slider">
-                    <form className='slider__form' onSubmit={handleSubmit(handleLogin)}>
-                        <label htmlFor="email" className="slider__form-label">Email</label>
-                        <input className="slider__form-input" type='text' id='email' {...register('email')} />
-                        <label htmlFor="password" className="slider__form-label">Senha</label>
-                        <input className="slider__form-input" type='password' id='password' {...register('password')} />
-                        <a href="">Esqueceu sua senha ?</a>
-                        <button type='submit'>Entrar</button>
-                        <span title='Esconder menu' onClick={() => setShowSlider(false)}><i className="fa-solid fa-chevron-up"></i></span>
-                    </form>
-                </div>
-            }
             <button title='Menu' className='header__btn-menu' onClick={() => setShowSlider(true)}><i className="fa-solid fa-bars"></i></button>
+            {showSlider && <Slider type={typeSlider} onClick={() => setShowSlider(false)} />}
         </header>
     )
 }

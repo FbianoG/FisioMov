@@ -1,7 +1,7 @@
 .fisio {
     height: 100vh;
     display: flex;
-    padding: 30px 0 30px 300px;
+    padding: 30px 5% 30px 300px;
     background: #e6e9f0;
 }
 
@@ -46,6 +46,20 @@
     height: 50px;
     border-radius: 50%;
     border: 2px solid #788fdb;
+}
+
+.fisio .patients__list li .imgFake {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #788fdb;
+    display: grid;
+    place-items: center;
+    font-size: 24px;
+    text-transform: uppercase;
+    background: #fff;
+    color: #788fdb;
+    font-weight: 500;
 }
 
 .fisio .patients__list li h4 {
@@ -100,7 +114,7 @@
 
     .fisio .patients__list li {
         width: 100%;
-        padding: 20px 0 ;
+        padding: 20px 0;
     }
 
     .fisio .patients__list li .item__data {

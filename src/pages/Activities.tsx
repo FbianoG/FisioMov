@@ -25,7 +25,7 @@ const Activities = () => {
         try {
             const response = await getUser()
             setUser(response)
-            if (response.isPacient) location.href = '/'
+            if (response.isPatient) location.href = '/'
         } catch (error) {
             console.log(error)
         }

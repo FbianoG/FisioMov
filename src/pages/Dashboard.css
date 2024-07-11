@@ -1,7 +1,7 @@
 .fisio .card {
     width: 250px;
     height: 150px;
-    padding: 30px 10px;
+    padding: 30px 30px;
     margin: 0 0 20px;
     display: flex;
     flex-direction: column;
@@ -23,7 +23,6 @@
 }
 
 .fisio .card p {
-    padding: 0 0 0 40px;
     color: #777;
     font-weight: 500;
 }
@@ -31,7 +30,7 @@
 .fisio .graph {
 
  
-    width: 90%;
+    width: 100%;
     background: #fff;
     border: 1px solid #0001;
     border-radius: 10px;

@@ -27,7 +27,7 @@ const Fisio = () => {
         try {
             const response = await getUser()
             setUser(response)
-            if (response.isPacient) location.href = '/'
+            if (response.isPatient) location.href = '/'
         } catch (error) {
             console.log(error)
         }
@@ -60,11 +60,11 @@ const Fisio = () => {
                 <h2>Lista de Pacientes</h2>
                 {patients && patients.map(element => (
                     <li key={element._id}>
-                        <img src={element.src} alt='' />
+                        {element.src ? <img src={element.src} alt='' /> : <div className="imgFake">{element.name.slice(0, 1)}</div>}
                         <div className="item__data">
                             <h4>{element.name}</h4>
                             <span>{((new Date().getTime() - new Date(element.nasc).getTime()) / 1000 / 60 / 60 / 24 / 365.25).toFixed(0)} anos</span>
-                            <span>Ativo</span>
+                            <span>{element.email}</span>
                         </div>
                         <button title='Adicionar atividades' onClick={() => { setShowModal(!showModal), setPatientEdit(element) }}>▶️</button>
                     </li>
