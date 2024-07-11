@@ -7,6 +7,7 @@ import Home from './pages/Homes'
 import Fisio from './pages/Fisio';
 import Patient from './pages/Patient';
 import Activities from './pages/Activities';
+import Dashboard from './pages/Dashboard';
 
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/fisio" element={<Fisio />} />
           <Route path="/patient" element={<Patient />} />
           <Route path="/activities" element={<Activities />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </Router>
 

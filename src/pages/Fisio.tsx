@@ -27,6 +27,7 @@ const Fisio = () => {
         try {
             const response = await getUser()
             setUser(response)
+            if (response.isPacient) location.href = '/'
         } catch (error) {
             console.log(error)
         }

@@ -34,7 +34,7 @@ const getUser = async () => {
 const getPatients = async () => {
     try {
         const response = await axios.post(`${UrlBack}/getAllUsers`)
-        return response.data
+        return response.data     /// ! status: 200, auth: true, allPatients:
     } catch (error: any) {
         if (error.response) throw new Error(error.response.data.message)
         else if (error.request) throw new Error("Error de rede. Tente novamente.")

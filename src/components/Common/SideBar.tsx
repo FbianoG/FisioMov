@@ -8,23 +8,30 @@ interface SideBarProps {
 
 const SideBar: React.FC<SideBarProps> = ({ user }) => {
 
+
+    const verifyLinkActive = (href: string) => {
+        if (location.pathname === href) return 'active'
+    }
+
+
+
     return (
         <div className="sideBar">
             <h1>FisioMov</h1>
 
             {!user?.isPacient &&
                 <ul className="sideBar__list">
-                    <a href='/fisio' className=''>Pacientes</a>
-                    <a href='/activities'>Atividades</a>
-                    <a href=''>Dashboard</a>
-                    <a href=''>Configurações</a>
+                    <a href='/fisio' className={verifyLinkActive('/fisio')}>Pacientes</a >
+                    <a href='/activities' className={verifyLinkActive('/activities')}>Atividades</a>
+                    <a href='/dashboard' className={verifyLinkActive('/dashboard')}>Dashboard</a>
+                    <a href='' className={verifyLinkActive('/')}>Configurações</a>
                     <a href='/'>Sair</a>
                 </ul>
             }
             {user?.isPacient &&
                 <ul className="sideBar__list">
-                    <a href='/patient' className='active'>Atividades</a>
-                    <a href=''>Configurações</a>
+                    <a href='/patient' className={verifyLinkActive('/patient')}>Atividades</a>
+                    <a href='' className={verifyLinkActive('/config')}>Configurações</a>
                     <a href='/'>Sair</a>
                 </ul>
             }

@@ -69,7 +69,7 @@ const Modal: React.FC<ModalProps> = ({ patient, activity, onClick, functions }) 
                                 <input type='number' name='series' defaultValue={element.series} />
                                 <input type='number' name='qtd' defaultValue={element.qtd} />
                                 <button title='Atualizar' type='submit'>✏️</button>
-                                <button title='Excluir Atividade' type='button' onClick={() => deteleAtivitys(element.id)}>🗑️</button>
+                                <button title='Excluir Atividade' type='button' onClick={() => deteleAtivitys(element.id)}>⛔</button>
                             </form>
                         )
                     })}

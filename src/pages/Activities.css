@@ -24,6 +24,42 @@
     color: #444;
 }
 
+.fisio .patients__list form {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    & input {
+        padding: 3px 5px;
+        border-radius: 5px;
+        border: 1px solid #0003;
+        outline: none;
+
+    }
+
+    & select {
+        padding: 3px 5px;
+        border-radius: 5px;
+        border: 1px solid #0003;
+        outline: none;
+    }
+
+    & button {
+        background: none;
+        font-size: 16px;
+        color: #788fdb;
+        border: none;
+        transition: 400ms;
+        cursor: pointer;
+
+        &:hover {
+            opacity: .7;
+        }
+    }
+}
+
 .fisio .item__data a {
     font-size: 12px;
     text-transform: capitalize;
@@ -31,6 +67,7 @@
     text-decoration: none;
     transition: 400ms;
     text-transform: none;
+
     &:hover {
         opacity: .7;
     }

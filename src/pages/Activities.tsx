@@ -25,7 +25,7 @@ const Activities = () => {
         try {
             const response = await getUser()
             setUser(response)
-            console.log(response)
+            if (response.isPacient) location.href = '/'
         } catch (error) {
             console.log(error)
         }
@@ -64,22 +64,22 @@ const Activities = () => {
             <SideBar user={user} />
             <ul className="patients__list">
                 <h2>Gerenciar Atividades</h2>
-                <form style={{ display: 'flex', margin: '0 auto', justifyContent: 'center', gap: '10px', flexWrap: 'wrap' }} onSubmit={handleSubmit(createAct)}>
+                <form  onSubmit={handleSubmit(createAct)}>
                     <input type='text' {...register('name')} />
                     <input type='text' {...register('web')} />
                     <select {...register('category')}>
                         <option value="lw">Inferiores</option>
                         <option value="hg">Superiores</option>
                     </select>
-                    <button type="submit">Criar</button>
+                    <button title='criar atividade' type="submit">Criar Atividade</button>
                 </form>
                 <ul>
                     {activities && activities.map(element => (
                         <li key={element._id}>
                             <div className="item__data">
                                 <h4>{element.name}</h4>
-                                <span>{element.category}</span>
-                                <a href={element.web} target='_blank'>{element.web}</a>
+                                <span>{element.category === 'hg' ? 'Superior' : 'Inferior'}</span>
+                                <a href={element.web} target='_blank'>Link IA</a>
                             </div>
                             <button title='Excluir atividade' onClick={() => deleteAct(element._id)}>❌</button>
                         </li>

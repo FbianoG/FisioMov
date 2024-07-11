@@ -1,0 +1,88 @@
+.fisio .card {
+    width: 250px;
+    height: 150px;
+    padding: 30px 10px;
+    margin: 0 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #0001;
+    box-shadow: 1px 1px 2px #0001;
+}
+
+.fisio .card span {
+    font-size: 40px;
+    color: #788fdb;
+
+
+    & strong {
+        font-size: 24px;
+    }
+}
+
+.fisio .card p {
+    padding: 0 0 0 40px;
+    color: #777;
+    font-weight: 500;
+}
+
+.fisio .graph {
+
+ 
+    width: 90%;
+    background: #fff;
+    border: 1px solid #0001;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px #0001;
+}
+
+.fisio .graph h3 {
+    padding: 20px;
+    font-size: 24px;
+    font-weight: 500;
+    background: linear-gradient(to bottom right, #99d7db, #788fdb, #9e95c7);
+    background-clip: text;
+    color: transparent;
+}
+
+.fisio .graph__list {
+    display: flex;
+    max-height: 350px;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.fisio .graph__item {
+    padding: 20px 0;
+    border-top: 1px solid #0001;
+    display: flex;
+
+    &:hover {
+        background: #f9f9f9;
+    }
+}
+
+.fisio .graph__item span {
+    width: 70px;
+    border-right: 1px solid #0003;
+    text-align: center;
+    color: rgb(118, 176, 118);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.fisio .graph__item p {
+    font-size: 20px;
+    text-transform: capitalize;
+    color: #555;
+    padding: 0 20px ;
+}
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 767px) {
+    .fisio .graph {
+        width: 100%;
+    }
+}
