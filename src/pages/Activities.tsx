@@ -64,7 +64,7 @@ const Activities = () => {
             <SideBar user={user} />
             <ul className="patients__list">
                 <h2>Gerenciar Atividades</h2>
-                <form style={{ display: 'flex', margin: '0 auto', flexWrap: 'wrap' }} onSubmit={handleSubmit(createAct)}>
+                <form style={{ display: 'flex', margin: '0 auto', justifyContent: 'center', gap: '10px', flexWrap: 'wrap' }} onSubmit={handleSubmit(createAct)}>
                     <input type='text' {...register('name')} />
                     <input type='text' {...register('web')} />
                     <select {...register('category')}>
@@ -78,6 +78,7 @@ const Activities = () => {
                         <li key={element._id}>
                             <div className="item__data">
                                 <h4>{element.name}</h4>
+                                <span>{element.category}</span>
                                 <a href={element.web} target='_blank'>{element.web}</a>
                             </div>
                             <button title='Excluir atividade' onClick={() => deleteAct(element._id)}>❌</button>

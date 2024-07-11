@@ -6,7 +6,7 @@
 }
 
 .fisio .patients__list {
-    width: 600px;
+    width: 800px;
     margin: 0 auto;
     border: 1px solid #0002;
     list-style: none;
@@ -83,7 +83,9 @@
 @media screen and (max-width: 1100px) {
     .fisio {
         padding: 30px 5% 0 5%;
+        background: #fff;
     }
+
 
     .fisio .patients__list h2 {
         text-align: center;
@@ -92,11 +94,13 @@
     .fisio .patients__list {
         width: 100%;
         overflow: auto;
+        background: none;
+        border: none;
     }
 
     .fisio .patients__list li {
         width: 100%;
-        padding: 20px 10px ;
+        padding: 20px 0 ;
     }
 
     .fisio .patients__list li .item__data {

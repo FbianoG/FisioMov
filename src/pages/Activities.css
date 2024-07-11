@@ -2,7 +2,7 @@
     padding: 30px 5% 30px 300px;
 }
 
-.activities h2{
+.activities h2 {
     color: #555;
     font-weight: 500;
 }
@@ -24,13 +24,13 @@
     color: #444;
 }
 
-.activities .list__item-data a {
+.fisio .item__data a {
     font-size: 12px;
     text-transform: capitalize;
     color: #444;
     text-decoration: none;
     transition: 400ms;
-
+    text-transform: none;
     &:hover {
         opacity: .7;
     }
@@ -45,6 +45,13 @@
 @media screen and (max-width: 767px) {
 
     .activities {
-        padding: 30px 5% ;
+        padding: 30px 5%;
+    }
+
+    .fisio .patients__list li .item__data {
+        width: 90%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        /* white-space: nowrap; */
     }
 }

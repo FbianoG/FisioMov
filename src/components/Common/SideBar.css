@@ -96,11 +96,11 @@
      position: fixed;
      right: -60px;
      top: 20px;
-     color: #fff;
+     color: #333;
      font-size: 32px;
-     background: linear-gradient(to bottom right, #99d7db, #788fdb, #9e95c7);
+     background: none;
      border: none;
-     border-radius: 10px;
+     border-radius: 3px;
      text-shadow: 3px 3px 5px #0003;
  }
 
