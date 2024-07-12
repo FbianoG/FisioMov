@@ -15,6 +15,7 @@ const Header: React.FC = () => {
     const [showSlider, setShowSlider] = useState(false)
     const [typeSlider, settypeSlider] = useState<'access' | 'register'>('access')
 
+    const { register, handleSubmit, reset } = useForm<FormRegisterData | FormLoginData>();
 
     return (
         <header>

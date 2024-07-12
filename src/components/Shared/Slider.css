@@ -40,6 +40,11 @@
     border: none;
     border-bottom: 1px solid #0002;
     outline: none;
+
+    &::placeholder {
+        color: #bbb;
+        font-size: 14px;
+    }
 }
 
 .slider .slider__form button {

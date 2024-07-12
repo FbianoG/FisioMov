@@ -48,9 +48,9 @@ const Slider: React.FC<SliderProps> = ({ type, onClick }) => {
                 <form className='slider__form' onSubmit={handleSubmit(handleLogin)}>
                     <h3>Login</h3>
                     <label htmlFor="email" className="slider__form-label">Email</label>
-                    <input className="slider__form-input" type='email' id='email' defaultValue='babi@gmail.com' {...register('email', { required: true })} required />
+                    <input className="slider__form-input" type='email' id='email' placeholder='babi@gmail.com' {...register('email', { required: true })} required />
                     <label htmlFor="password" className="slider__form-label">Senha</label>
-                    <input className="slider__form-input" type='password' id='password' defaultValue='123' {...register('password', { required: true })} required />
+                    <input className="slider__form-input" type='password' id='password' placeholder='123' {...register('password', { required: true })} required />
                     <a href="">Esqueceu sua senha?</a>
                     {access ? <button type='submit' disabled>
                         Acessando
