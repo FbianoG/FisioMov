@@ -2,14 +2,16 @@ import { useState } from 'react';
 import './Slider.css'
 import { useForm, SubmitHandler } from "react-hook-form";
 import { createUser, FormLoginData, FormRegisterData, login } from '../../api/user';
+import Button from '../Common/Button';
 
 
 interface SliderProps {
     type: 'access' | 'register'
     onClick: () => void
+    changeType: React.Dispatch<React.SetStateAction<'access' | 'register'>>
 }
 
-const Slider: React.FC<SliderProps> = ({ type, onClick }) => {
+const Slider: React.FC<SliderProps> = ({ type, onClick, changeType }) => {
 
     const { register, handleSubmit, reset } = useForm<FormRegisterData | FormLoginData>();
     const [access, setAccess] = useState<boolean>(false)
@@ -51,23 +53,19 @@ const Slider: React.FC<SliderProps> = ({ type, onClick }) => {
                     <input className="slider__form-input" type='email' id='email' placeholder='babi@gmail.com' {...register('email', { required: true })} required />
                     <label htmlFor="password" className="slider__form-label">Senha</label>
                     <input className="slider__form-input" type='password' id='password' placeholder='123' {...register('password', { required: true })} required />
-                    <a href="">Esqueceu sua senha?</a>
-                    {access ? <button type='submit' disabled>
-                        Acessando
-                        <div className="loading">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </div>
-                    </button>
+
+                    {access ?
+                        <Button text={'acessando'} disabled type='button' />
                         :
-                        <button type='submit'>Entrar</button>
+                        <Button text='Entrar' type='submit' />
                     }
+                    <Button text='Criar Conta' outline type='button' onclick={() => changeType('register')} />
                     <span title='Esconder menu' onClick={onClick}><i className="fa-solid fa-chevron-up"></i></span>
                 </form>
             }
 
-            {type === 'register' &&
+            {
+                type === 'register' &&
                 <form className='slider__form' onSubmit={handleSubmit(handleRegister)}>
                     <h3>Registro</h3>
                     <label htmlFor="email" className="slider__form-label">Email</label>
@@ -80,22 +78,17 @@ const Slider: React.FC<SliderProps> = ({ type, onClick }) => {
                     <input className="slider__form-input" type='date' id='nasc' {...register('nasc', { required: true })} required />
                     {/* <label htmlFor="src" className="slider__form-label">Foto de Perfil</label> */}
                     {/* <input className="slider__form-input" type='file' id='src' {...register('src')} /> */}
-                    <br />
-                    {access ? <button type='submit' disabled>
-                        Cadastrando
-                        <div className="loading">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </div>
-                    </button>
+
+                    {access ?
+                        <Button text='Aguarde...' type='button' disabled />
                         :
-                        <button type='submit'>Criar Cadastro</button>
+                        <Button text='Criar Conta' type='submit' />
                     }
+                    <Button text='Cancelar' outline type='button' onclick={() => changeType('access')} />
                     <span title='Esconder menu' onClick={onClick}><i className="fa-solid fa-chevron-up"></i></span>
                 </form>
             }
-        </div>
+        </div >
     )
 }
 

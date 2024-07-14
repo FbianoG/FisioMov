@@ -47,4 +47,11 @@ const allCardTerapy = [
 
 ]
 
+
+
+
+
+
+
+
 export { allCardTerapy } 

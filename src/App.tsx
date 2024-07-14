@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import ScrollReveal from 'scrollreveal';
+import ScrollReveal from 'scrollreveal'
 import './App.css'
 
 import Home from './pages/Homes'
-import Fisio from './pages/Fisio';
-import Patient from './pages/Patient';
-import Activities from './pages/Activities';
-import Dashboard from './pages/Dashboard';
-import Register from './pages/Register';
+import Fisio from './pages/Fisio'
+import Patient from './pages/Patient'
+import Activities from './pages/Activities'
+import Dashboard from './pages/Dashboard'
+
 
 
 const App = () => {
@@ -31,11 +31,8 @@ const App = () => {
           <Route path="/patient" element={<Patient />} />
           <Route path="/activities" element={<Activities />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/register" element={<Register />} />
         </Routes>
       </Router>
-
-
     </>
   )
 }

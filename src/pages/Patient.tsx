@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import SideBar from '../components/Common/SideBar'
 import './Patient.css'
 import axios from 'axios'
@@ -13,6 +13,13 @@ const Patient = () => {
 
     const [user, setUser] = useState<UserData>()
     const [activities, setActivities] = useState<ActivitiesData[]>()
+    const [video, setVideo] = useState<Boolean>(false)
+
+    const content = useRef<any>()
+    const container = useRef<any>()
+    const [pts, setPts] = useState<number>(0)
+
+    useEffect(() => { console.log(pts) }, [pts])
 
     useEffect(() => { loadPage() }, [])
 
@@ -26,6 +33,58 @@ const Patient = () => {
         }
     }
 
+
+    let model: any;
+    let webcam: any;
+    let ctx: any;
+    let containerResult: any;
+    let maxPredictions: any;
+
+    async function init(URL) {
+        const modelURL = URL + "model.json"
+        const metadataURL = URL + "metadata.json"
+        setVideo(true)
+
+        model = await tmPose.load(modelURL, metadataURL)
+        maxPredictions = model.getTotalClasses()
+
+        const size = 500
+        const flip = true;
+        webcam = new tmPose.Webcam(size, size, flip)
+        await webcam.setup()
+        await webcam.play()
+        window.requestAnimationFrame(loop)
+
+        const canvas = content.current
+        canvas.width = size; canvas.height = size
+        ctx = canvas.getContext("2d")
+    }
+
+    async function loop() {
+        webcam.update()
+        await predict()
+        window.requestAnimationFrame(loop)
+    }
+
+    async function predict() {
+        const { pose, posenetOutput } = await model.estimatePose(webcam.canvas)
+        const prediction = await model.predict(posenetOutput) // output do vídeo 
+        setPts(prediction[0].probability)
+        drawPose(pose);
+    }
+
+    function drawPose(pose: any) {
+        if (webcam.canvas) {
+            ctx.drawImage(webcam.canvas, 0, 0);
+            if (pose) {
+                const minPartConfidence = 0.5;
+                tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx);
+                tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx);
+            }
+        }
+    }
+
+
     return (
         <div className="patient">
             <SideBar user={user} />
@@ -34,7 +93,7 @@ const Patient = () => {
                 <ul className="activities__list">
                     {user?.proced.map(element => {
                         const act = activities?.find(e => e._id === element.id)
-                        if (!act) return 
+                        if (!act) return
                         return (
                             <li key={element.id}>
                                 <span style={{ fontSize: '24px' }}>🏋🏼‍♂️</span>
@@ -43,14 +102,30 @@ const Patient = () => {
                                     <span><strong>Series:</strong> {element.series}</span>
                                     <span><strong>Repetições:</strong> {element.qtd}</span>
                                 </div>
-                                <a>🌐</a>
+                                <button onClick={() => init(act.web)}>🌐</button>
                             </li>
                         )
                     })}
                 </ul>
+                {video &&
+                    <div className="video">
+                        <a href='' title='Fechar' onClick={() => {
+                            setVideo(false);
+                            if (webcam && webcam.stream) {
+                                webcam.stream.getTracks().forEach(track => track.stop());
+                            }
+                        }}>❌</a>
+                        <canvas className="content" ref={content}></canvas>
+                        <div className='result' ref={container}>
+                            <span style={(pts * 100) >= 70 ? { color: '#2ae031' }: {color: 'red'}} >{`${(pts * 100).toFixed(1)}%`}</span>
+                            <div className="result__bar" style={{ height: `${pts * 100}%` }}></div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     )
 }
+
 
 export default Patient

@@ -1,8 +1,26 @@
 .main__button {
     padding: 10px 30px;
-    border: 1px solid transparent;
+    border: none;
     border-radius: 5px;
     background: #fff5;
+    background: linear-gradient(to bottom right, #99d7db, #788fdb, #9e95c7);
+    color: #fff;
+    letter-spacing: 1px;
+    box-shadow: 2px 2px 5px #0001;
+    cursor: pointer;
+    transition: 400ms;
+
+    &:hover {
+        box-shadow: none;
+        filter: brightness(1.1);
+    }
+}
+
+#outline__button {
+    padding: 10px 30px;
+    border: 1px solid #788fdb;
+    border-radius: 5px;
+    background: none;
     color: #788fdb;
     /* font-weight: 500; */
     letter-spacing: 1px;
@@ -14,4 +32,18 @@
         box-shadow: none;
         filter: brightness(1.1);
     }
+}
+
+
+.disabled {
+    padding: 10px 30px;
+    border: 1px solid #999;
+    border-radius: 5px;
+    background: none;
+    color: #555;
+    letter-spacing: 1px;
+    transition: 400ms;
+    filter: grayscale(1);
+    opacity: .5;
+
 }

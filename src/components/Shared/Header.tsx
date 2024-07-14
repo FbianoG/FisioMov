@@ -33,7 +33,7 @@ const Header: React.FC = () => {
                 {/* <button className='main__button' onclick={() => { setShowSlider(true), settypeSlider('register') }}>Registar</button> */}
             </div>
             <button title='Menu' className='header__btn-menu' onClick={() => setShowSlider(true)}><i className="fa-solid fa-bars"></i></button>
-            {showSlider && <Slider type={typeSlider} onClick={() => setShowSlider(false)} />}
+            {showSlider && <Slider type={typeSlider} onClick={() => setShowSlider(false)} changeType={settypeSlider} />}
         </header>
     )
 }

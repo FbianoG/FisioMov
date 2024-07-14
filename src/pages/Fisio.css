@@ -1,5 +1,5 @@
 .fisio {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     padding: 30px 5% 30px 300px;
     background: #e6e9f0;
@@ -44,6 +44,7 @@
     object-fit: cover;
     width: 50px;
     height: 50px;
+    min-width: 50px;
     border-radius: 50%;
     border: 2px solid #788fdb;
 }
@@ -96,7 +97,7 @@
 /* MB <= 767 - TB <= 1023 - */
 @media screen and (max-width: 1100px) {
     .fisio {
-        padding: 30px 5% 0 5%;
+        padding: 30px 5% 30px 5%;
         background: #fff;
     }
 

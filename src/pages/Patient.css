@@ -37,7 +37,6 @@
     text-transform: capitalize;
 }
 
-
 .patient .activities__item-data span {
     margin: 0 20px 0 0;
     color: #777;
@@ -48,16 +47,81 @@
     font-weight: 500;
 }
 
-.patient .activities__list a {
+.patient .activities__list button {
     cursor: pointer;
     transition: 400ms;
     margin: 0 0 0 auto;
+    background: none;
+    border: none;
+    font-size: 20px;
 
     &:hover {
         opacity: .7;
     }
 }
 
+
+.patient .video {
+    width: 100vw;
+    height: 100vh;
+    background: #000c;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.patient .video .content {
+    width: 500px;
+    height: 500px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px #0003;
+}
+
+.patient .result {
+    width: 40px;
+    height: 500px;
+    background: #fff;
+    rotate: 180deg;
+    position: relative;
+}
+.patient .result__bar {
+    background: linear-gradient(to bottom right, #99d7db, #788fdb, #9e95c7);
+    height: 100%;
+    
+}
+
+.patient .result span {
+    rotate: 180deg;
+    display: block;
+    position: absolute;
+    top: 100%;
+    font-size: 24px;
+    color: #2ae031;
+    right: 50%;
+    transform: translate(-50%);
+}
+
+.patient .video a{
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    font-size: 40px;
+    background: none;
+    border: none;
+    transition: 400ms;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+        transform: scale(1.2);
+
+    }
+}
 /* MB <= 767 - TB <= 1023 - */
 @media screen and (max-width: 767px) {
     .patient {
@@ -70,7 +134,7 @@
 
     .patient__activities {
         width: 100%;
-        padding: 0 ;
+        padding: 0;
     }
 
     .patient__activities h2 {
@@ -78,6 +142,27 @@
     }
 
     .patient .activities__list li {
-        padding: 20px 0 ;
+        padding: 20px 0;
     }
+
+    .patient .video .content {
+        width: 100%;
+    }
+
+
+    .patient .video {
+        flex-direction: column;
+    }
+
+    .patient .result {
+        max-height: 500px;
+    }
+
+    .patient .video a {
+        right: 20px;
+        top: 20px;
+    }
+
+
+
 }
