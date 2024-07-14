@@ -131,16 +131,16 @@
         padding: 50px 5%;
     }
 
-    .patient .activities__list {
+    .patient .act__list {
         width: 100%;
     }
 
-    .patient__activities {
+    .patient .act {
         width: 100%;
         padding: 0;
     }
 
-    .patient__activities h2 {
+    .patient .act h2 {
         text-align: center;
     }
 
