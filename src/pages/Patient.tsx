@@ -39,40 +39,52 @@ const Patient = () => {
     let ctx: any;
     let containerResult: any;
     let maxPredictions: any;
-
-    async function init(URL) {
-        const modelURL = URL + "model.json"
-        const metadataURL = URL + "metadata.json"
-        setVideo(true)
-
-        model = await tmPose.load(modelURL, metadataURL)
-        maxPredictions = model.getTotalClasses()
-
-        const size = 500
+    
+    async function init(URL: string) {
+        const modelURL = URL + "model.json";
+        const metadataURL = URL + "metadata.json";
+        setVideo(true);
+    
+        model = await tmPose.load(modelURL, metadataURL);
+        maxPredictions = model.getTotalClasses();
+    
+        const size = 500; // Define a size suitable for both desktop and mobile
         const flip = true;
-        webcam = new tmPose.Webcam(size, size, flip)
-        await webcam.setup()
-        await webcam.play()
-        window.requestAnimationFrame(loop)
-
-        const canvas = content.current
-        canvas.width = size; canvas.height = size
-        ctx = canvas.getContext("2d")
+        webcam = new tmPose.Webcam(size, size, flip);
+    
+        try {
+            await webcam.setup();
+            await webcam.play();
+            window.requestAnimationFrame(loop);
+    
+            const canvas = document.getElementById('canvas') as HTMLCanvasElement;
+            canvas.width = size;
+            canvas.height = size;
+            ctx = canvas.getContext("2d");
+    
+            // Mobile-specific adjustments
+            if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android)/)) {
+                document.body.addEventListener('touchstart', preventScroll, { passive: false });
+            }
+    
+        } catch (error) {
+            console.error("Webcam setup failed:", error);
+        }
     }
-
+    
     async function loop() {
-        webcam.update()
-        await predict()
-        window.requestAnimationFrame(loop)
+        webcam.update();
+        await predict();
+        window.requestAnimationFrame(loop);
     }
-
+    
     async function predict() {
-        const { pose, posenetOutput } = await model.estimatePose(webcam.canvas)
-        const prediction = await model.predict(posenetOutput) // output do vídeo 
-        setPts(prediction[0].probability)
+        const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
+        const prediction = await model.predict(posenetOutput); // output do vídeo 
+        setPts(prediction[0].probability);
         drawPose(pose);
     }
-
+    
     function drawPose(pose: any) {
         if (webcam.canvas) {
             ctx.drawImage(webcam.canvas, 0, 0);
@@ -83,21 +95,24 @@ const Patient = () => {
             }
         }
     }
-
+    
+    function preventScroll(event: Event) {
+        event.preventDefault();
+    }
 
     return (
         <div className="patient">
             <SideBar user={user} />
-            <div className="patient__activities">
+            <div className="act">
                 <h2>Atividades</h2>
-                <ul className="activities__list">
+                <ul className="act__list">
                     {user?.proced.map(element => {
                         const act = activities?.find(e => e._id === element.id)
                         if (!act) return
                         return (
-                            <li key={element.id}>
+                            <li key={element.id} className='act__item'>
                                 <span style={{ fontSize: '24px' }}>🏋🏼‍♂️</span>
-                                <div className="activities__item-data">
+                                <div className="act__item-data">
                                     <p>{act.name}</p>
                                     <span><strong>Series:</strong> {element.series}</span>
                                     <span><strong>Repetições:</strong> {element.qtd}</span>
@@ -115,7 +130,7 @@ const Patient = () => {
                                 webcam.stream.getTracks().forEach(track => track.stop());
                             }
                         }}>❌</a>
-                        <canvas className="content" ref={content}></canvas>
+                        <canvas className="content" id='canvas' ref={content}></canvas>
                         <div className='result' ref={container}>
                             <span style={(pts * 100) >= 70 ? { color: '#2ae031' }: {color: 'red'}} >{`${(pts * 100).toFixed(1)}%`}</span>
                             <div className="result__bar" style={{ height: `${pts * 100}%` }}></div>
