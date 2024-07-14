@@ -19,7 +19,6 @@ const Patient = () => {
     const container = useRef<any>()
     const [pts, setPts] = useState<number>(0)
 
-    useEffect(() => { console.log(pts) }, [pts])
 
     useEffect(() => { loadPage() }, [])
 
@@ -37,67 +36,54 @@ const Patient = () => {
     let model: any;
     let webcam: any;
     let ctx: any;
-    let containerResult: any;
+    let labelContainer: any;
     let maxPredictions: any;
-    
-    async function init(URL: string) {
+
+
+    // Load the image model and setup the webcam
+    async function init(URL) {
         const modelURL = URL + "model.json";
         const metadataURL = URL + "metadata.json";
-        setVideo(true);
-    
-        model = await tmPose.load(modelURL, metadataURL);
+
+        setVideo(true)
+        model = await tmImage.load(modelURL, metadataURL);
         maxPredictions = model.getTotalClasses();
-    
-        const size = 500; // Define a size suitable for both desktop and mobile
+
+      
         const flip = true;
-        webcam = new tmPose.Webcam(size, size, flip);
-    
-        try {
-            await webcam.setup();
-            await webcam.play();
-            window.requestAnimationFrame(loop);
-    
-            const canvas = document.getElementById('canvas') as HTMLCanvasElement;
-            canvas.width = size;
-            canvas.height = size;
-            ctx = canvas.getContext("2d");
-    
-            // Mobile-specific adjustments
-            if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android)/)) {
-                document.body.addEventListener('touchstart', preventScroll, { passive: false });
-            }
-    
-        } catch (error) {
-            console.error("Webcam setup failed:", error);
+        if (innerWidth < 767) {
+            webcam = new tmImage.Webcam(400, 400, flip)
+        } else {
+            webcam = new tmImage.Webcam(500, 500, flip)
+        }
+        await webcam.setup(); 
+        await webcam.play();
+        window.requestAnimationFrame(loop);
+
+        // append elements to the DOM
+        document.getElementById("webcam-container").appendChild(webcam.canvas);
+        labelContainer = document.getElementById("label-container");
+        for (let i = 0; i < maxPredictions; i++) { // and class labels
+            labelContainer.appendChild(document.createElement("div"));
         }
     }
-    
+
     async function loop() {
-        webcam.update();
+        webcam.update(); // update the webcam frame
         await predict();
         window.requestAnimationFrame(loop);
     }
-    
+
+    // run the webcam image through the image model
     async function predict() {
-        const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
-        const prediction = await model.predict(posenetOutput); // output do vídeo 
-        setPts(prediction[0].probability);
-        drawPose(pose);
-    }
-    
-    function drawPose(pose: any) {
-        if (webcam.canvas) {
-            ctx.drawImage(webcam.canvas, 0, 0);
-            if (pose) {
-                const minPartConfidence = 0.5;
-                tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx);
-                tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx);
-            }
-        }
-    }
-    
-    function preventScroll(event: Event) {
-        event.preventDefault();
+        // predict can take in an image, video or canvas html element
+        const prediction = await model.predict(webcam.canvas);
+        setPts(prediction[0].probability)
+        // for (let i = 0; i < maxPredictions; i++) {
+        //     const classPrediction =
+        //         prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+        //     labelContainer.childNodes[i].innerHTML = classPrediction;
+        // }
     }
 
     return (
@@ -130,9 +116,9 @@ const Patient = () => {
                                 webcam.stream.getTracks().forEach(track => track.stop());
                             }
                         }}>❌</a>
-                        <canvas className="content" id='canvas' ref={content}></canvas>
-                        <div className='result' ref={container}>
-                            <span style={(pts * 100) >= 70 ? { color: '#2ae031' }: {color: 'red'}} >{`${(pts * 100).toFixed(1)}%`}</span>
+                        <div className="content" id='webcam-container' ref={content}></div>
+                        <div className='result' id='label-container' ref={container}>
+                            <span style={(pts * 100) >= 70 ? { color: '#2ae031' } : { color: 'red' }} >{`${(pts * 100).toFixed(1)}%`}</span>
                             <div className="result__bar" style={{ height: `${pts * 100}%` }}></div>
                         </div>
                     </div>
