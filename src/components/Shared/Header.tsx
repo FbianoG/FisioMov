@@ -22,9 +22,9 @@ const Header: React.FC = () => {
             <a href='/' className='header__logo'>FisioMov</a>
             <nav>
                 <ul className="nav__list">
-                    <li className="nav__item"><a href=''>Início</a></li>
-                    <li className="nav__item"><a href=''>Sobre</a></li>
-                    <li className="nav__item"><a href=''>Team</a></li>
+                    <li className="nav__item"><a href='#hero'>Início</a></li>
+                    <li className="nav__item"><a href='#about'>Sobre</a></li>
+                    <li className="nav__item"><a href='#team'>Time</a></li>
                 </ul>
             </nav>
             <div className="group__buttons">

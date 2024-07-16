@@ -3,9 +3,9 @@ import './Footer.css'
 const Footer = () => {
 
    return (
-      <footer>
+      <footer className='reveal'>
 
-         <div className="banner">
+         <div className="banner reveal">
             <div className="banner__data">
                <h2>Venha fazer parte desse movimento!</h2>
                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
@@ -13,35 +13,24 @@ const Footer = () => {
             <button>Faça seu cadastro!</button>
          </div>
 
-         <div className="content">
+         <div className="content reveal">
             <div className="content__data">
                <h1>FisioMov</h1>
                <span>@ 2023</span>
             </div>
             <div className="content__data">
-               <h2>Links</h2>
-               <span>Home</span>
-               <span>Sobre</span>
-               <span>Time</span>
+               <h2>Site</h2>
+               <a href='#hero'>Início</a>
+               <a href='#about'>Sobre Nós</a>
+               <a href='#team'>Nosso Time</a>
             </div>
             <div className="content__data">
                <h2>Links</h2>
-               <span>Home</span>
-               <span>Sobre</span>
-               <span>Time</span>
+               <a href='https://www.instagram.com/arq_fisio/' target='_blank'>@fisioMov</a>
+               <a href='https://www.instagram.com/arq_fisio/' target='_blank'>WhatsApp</a>
+               <a href='https://www.instagram.com/arq_fisio/' target='_blank'>Facebook</a>
             </div>
-            <div className="content__data">
-               <h2>Links</h2>
-               <span>Home</span>
-               <span>Sobre</span>
-               <span>Time</span>
-            </div>
-            <div className="content__data">
-               <h2>Links</h2>
-               <span>Home</span>
-               <span>Sobre</span>
-               <span>Time</span>
-            </div>
+
 
          </div>
 

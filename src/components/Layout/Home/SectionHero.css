@@ -7,9 +7,22 @@
   align-items: center;
   flex-direction: column;
   background: linear-gradient(to bottom right, #99d7db, #788fdb, #9e95c7);
-  background: url('/imgHero1.jpg');
+  /* background: url('/hero1.jpg'); */
+  background-size: cover;
+  background-repeat: no-repeat;
   background-position: bottom;
   background-attachment: fixed;
+  position: relative;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: .3;
+  object-fit: cover;
 }
 
 .hero__content {
@@ -160,6 +173,10 @@
   .hero {
     height: 700px;
     padding: 120px 5% 40px;
+  }
+
+  .hero img {
+    display: none;
   }
 
   .hero .alert {

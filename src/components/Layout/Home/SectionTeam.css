@@ -1,14 +1,17 @@
+.team {
+    padding: 100px 5% 0 ;
+}
+
 .team__title {
     width: max-content;
     max-width: 350px;
     text-align: center;
-    margin: 150px auto 20px;
+    margin: 0 auto 20px;
     font-size: 48px;
     color: transparent;
     background: linear-gradient(to bottom right, #99d7db, #788fdb, #9e95c7);
     background-clip: text;
 }
-
 
 .team__legend {
     width: max-content;

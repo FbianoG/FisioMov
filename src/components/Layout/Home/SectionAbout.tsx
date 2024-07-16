@@ -3,7 +3,7 @@ import './SectionAbout.css'
 export default function SectionAbout() {
 
     return (
-        <section className='about'>
+        <section id='about' className='about'>
 
             <div className="about__head reveal">
                 <h3 className="head__subtitle">Faça parte desse movimento</h3>

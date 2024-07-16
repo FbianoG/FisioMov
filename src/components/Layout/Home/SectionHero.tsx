@@ -4,7 +4,8 @@ export default function SectionHero() {
 
     return (
         <section>
-            <div className="hero">
+            <div id='hero' className="hero">
+                <img src='hero2.webp' alt='' />
                 <div className="hero__content">
                     <span>SAÚDE</span>
                     <h1>FISIOMOV</h1>

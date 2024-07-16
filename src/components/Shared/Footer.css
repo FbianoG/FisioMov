@@ -17,7 +17,7 @@ footer .banner {
     background: linear-gradient(to bottom right, #99d7db, #788fdb, #9e95c7);
     border-radius: 5px;
     z-index: 1;
-    box-shadow: -20px -20px 0px 5px #ccc5;
+    box-shadow: -20px -20px 0px 5px #dbdbdb33;
 }
 
 
@@ -81,11 +81,22 @@ footer .content__data span {
     color: #aaa;
 
 }
+footer .content__data a {
+    color: #aaa;
+    text-decoration: none;
+}
 
 
 /* MB <= 767 - TB <= 1023 - */
 @media screen and (max-width: 767px) {
+    footer {
+        width: 100%;
+        padding:  ;
+    }
+
     footer .banner {
+        position: static;
+        transform: none;
         width: 100%;
         box-shadow: none;
         /* height: auto; */
@@ -101,5 +112,22 @@ footer .content__data span {
         padding: 10px 10px;
         width: max-content;
         font-size: 16px;
+    }
+
+    footer .content {
+        padding: 20px 5%;
+        flex-wrap: wrap;
+        gap: 30px 40px;
+    }
+
+    footer .content__data {
+        justify-content: center;
+        align-items: center;
+    }
+
+    footer .content__data:nth-child(1) {
+        width: 100%;
+        text-align: center;
+        order: 3;
     }
 }
