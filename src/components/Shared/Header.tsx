@@ -28,9 +28,8 @@ const Header: React.FC = () => {
                 </ul>
             </nav>
             <div className="group__buttons">
-                <Button text='Acessar' onclick={() => { setShowSlider(true), settypeSlider('access') }} />
-                <Button text='Registrar' onclick={() => { setShowSlider(true), settypeSlider('register') }} />
-                {/* <button className='main__button' onclick={() => { setShowSlider(true), settypeSlider('register') }}>Registar</button> */}
+                <Button text='Acessar' type='button' onclick={() => { setShowSlider(true), settypeSlider('access') }} />
+                <Button text='Registrar' type='button' onclick={() => { setShowSlider(true), settypeSlider('register') }} />
             </div>
             <button title='Menu' className='header__btn-menu' onClick={() => setShowSlider(true)}><i className="fa-solid fa-bars"></i></button>
             {showSlider && <Slider type={typeSlider} onClick={() => setShowSlider(false)} changeType={settypeSlider} />}

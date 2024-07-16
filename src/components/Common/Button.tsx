@@ -10,9 +10,6 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ text, onclick, outline, type, disabled }) => {
-
-    console.log(outline)
-
     return (
         <>
             {outline && <button id='outline__button' type={type} onClick={onclick}>{text}</button>}

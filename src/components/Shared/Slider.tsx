@@ -15,7 +15,7 @@ const Slider: React.FC<SliderProps> = ({ type, onClick, changeType }) => {
 
     const { register, handleSubmit, reset } = useForm<FormRegisterData | FormLoginData>();
     const [access, setAccess] = useState<boolean>(false)
-
+    const [loginAlert, setLoginAlert] = useState<string | null>(null)
 
     const handleLogin = async (data: FormLoginData) => {
         setAccess(true)
@@ -25,8 +25,9 @@ const Slider: React.FC<SliderProps> = ({ type, onClick, changeType }) => {
             sessionStorage.setItem('Token', response.token)
             if (response.patient) location.href = '/patient'
             else location.href = '/fisio'
-        } catch (error) {
+        } catch (error: any) {
             console.log(error)
+            setLoginAlert(error.message)
         } finally {
             setAccess(false)
         }
@@ -37,8 +38,9 @@ const Slider: React.FC<SliderProps> = ({ type, onClick, changeType }) => {
         try {
             const response = await createUser(data)
             reset()
-        } catch (error) {
+        } catch (error: any) {
             console.log(error)
+            setLoginAlert(error.message)
         } finally {
             setAccess(false)
         }
@@ -53,13 +55,13 @@ const Slider: React.FC<SliderProps> = ({ type, onClick, changeType }) => {
                     <input className="slider__form-input" type='email' id='email' placeholder='babi@gmail.com' {...register('email', { required: true })} required />
                     <label htmlFor="password" className="slider__form-label">Senha</label>
                     <input className="slider__form-input" type='password' id='password' placeholder='123' {...register('password', { required: true })} required />
-
+                    <p style={{ color: 'indianred' }}>{loginAlert}</p>
                     {access ?
                         <Button text={'acessando'} disabled type='button' />
                         :
                         <Button text='Entrar' type='submit' />
                     }
-                    <Button text='Criar Conta' outline type='button' onclick={() => changeType('register')} />
+                    <Button text='Criar Conta' outline type='button' onclick={() => { changeType('register'), reset(), setLoginAlert(null) }} />
                     <span title='Esconder menu' onClick={onClick}><i className="fa-solid fa-chevron-up"></i></span>
                 </form>
             }
@@ -78,13 +80,13 @@ const Slider: React.FC<SliderProps> = ({ type, onClick, changeType }) => {
                     <input className="slider__form-input" type='date' id='nasc' {...register('nasc', { required: true })} required />
                     {/* <label htmlFor="src" className="slider__form-label">Foto de Perfil</label> */}
                     {/* <input className="slider__form-input" type='file' id='src' {...register('src')} /> */}
-
+                    <p style={{ color: 'indianred' }}>{loginAlert}</p>
                     {access ?
                         <Button text='Aguarde...' type='button' disabled />
                         :
                         <Button text='Criar Conta' type='submit' />
                     }
-                    <Button text='Cancelar' outline type='button' onclick={() => changeType('access')} />
+                    <Button text='Cancelar' outline type='button' onclick={() => { changeType('access'), reset(), setLoginAlert(null) }} />
                     <span title='Esconder menu' onClick={onClick}><i className="fa-solid fa-chevron-up"></i></span>
                 </form>
             }

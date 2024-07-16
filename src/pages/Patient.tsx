@@ -40,7 +40,6 @@ const Patient = () => {
     let maxPredictions: any;
 
 
-    // Load the image model and setup the webcam
     async function init(URL) {
         const modelURL = URL + "model.json";
         const metadataURL = URL + "metadata.json";
@@ -60,23 +59,22 @@ const Patient = () => {
         await webcam.play();
         window.requestAnimationFrame(loop);
 
-        // append elements to the DOM
         document.getElementById("webcam-container").appendChild(webcam.canvas);
         labelContainer = document.getElementById("label-container");
-        for (let i = 0; i < maxPredictions; i++) { // and class labels
+        for (let i = 0; i < maxPredictions; i++) { 
             labelContainer.appendChild(document.createElement("div"));
         }
     }
 
     async function loop() {
-        webcam.update(); // update the webcam frame
+        webcam.update(); 
         await predict();
         window.requestAnimationFrame(loop);
     }
 
-    // run the webcam image through the image model
+
     async function predict() {
-        // predict can take in an image, video or canvas html element
+        
         const prediction = await model.predict(webcam.canvas);
         setPts(prediction[0].probability)
         // for (let i = 0; i < maxPredictions; i++) {

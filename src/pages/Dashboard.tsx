@@ -60,8 +60,8 @@ const Dashboard = () => {
                 <h3>Atividades Mais Usadas </h3>
                 <div className="graph__list">
                     {activities &&
-                        dataGraph().map(element => (
-                            <div className='graph__item'>
+                        dataGraph().map((element, index) => (
+                            <div key={index} className='graph__item'>
                                 <span>{element.count}</span>
                                 <p>{element.name}</p>
                             </div>
