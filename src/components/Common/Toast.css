@@ -4,6 +4,7 @@
     bottom: 1rem;
     left: 50%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     gap: 1rem;
     transform: translate(-50%, 50%);

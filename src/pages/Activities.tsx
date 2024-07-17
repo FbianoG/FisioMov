@@ -8,6 +8,7 @@ import { UrlBack } from '../api/api'
 import { useForm, SubmitHandler } from "react-hook-form";
 import { getUser } from '../api/user'
 import { createActivities, deleteActivities, FormData, getActivities } from '../api/activities'
+import Toast from '../components/Common/Toast'
 
 
 
@@ -17,6 +18,8 @@ const Activities = () => {
 
     const [user, setUser] = useState<UserData>()
     const [activities, setActivities] = useState<ActivitiesData[]>([])
+
+    const [toast, setToast] = useState<any>(false)
 
 
     useEffect(() => { loadUser(), loadActivities() }, [])
@@ -35,8 +38,9 @@ const Activities = () => {
         try {
             const response = await getActivities()
             setActivities(response)
-        } catch (error) {
+        } catch (error: any) {
             console.log(error)
+            setToast({ text: error.message, type: 'error' })
         }
     }
 
@@ -45,8 +49,10 @@ const Activities = () => {
             const response = await createActivities(data)
             loadActivities()
             reset()
-        } catch (error) {
+            setToast({ text: response.message, type: 'success' })
+        } catch (error: any) {
             console.log(error)
+            setToast({ text: error.message, type: 'error' })
         }
     }
 
@@ -54,8 +60,10 @@ const Activities = () => {
         try {
             const response = await deleteActivities(id)
             loadActivities()
-        } catch (error) {
+            setToast({ text: 'Atividade excluída com sucesso!', type: 'success' })
+        } catch (error: any) {
             console.log(error)
+            setToast({ text: error.message, type: 'error' })
         }
     }
 
@@ -64,9 +72,9 @@ const Activities = () => {
             <SideBar user={user} />
             <ul className="patients__list">
                 <h2>Gerenciar Atividades</h2>
-                <form  onSubmit={handleSubmit(createAct)}>
-                    <input type='text' {...register('name')} />
-                    <input type='text' {...register('web')} />
+                <form onSubmit={handleSubmit(createAct)}>
+                    <input type='text' {...register('name')} placeholder='Nome da Atividade' />
+                    <input type='text' {...register('web')} placeholder='Link da IA' />
                     <select {...register('category')}>
                         <option value="lw">Inferiores</option>
                         <option value="hg">Superiores</option>
@@ -86,6 +94,8 @@ const Activities = () => {
                     ))}
                 </ul>
             </ul>
+
+            {toast && <Toast text={toast.text} type={toast.type} onClick={() => setToast(false)} />}
         </div>
     )
 }
