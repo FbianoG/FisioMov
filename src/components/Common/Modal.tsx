@@ -10,7 +10,7 @@ interface ModalProps {
     patient: PatientData
     activity: ActivitiesData[]
     onClick: (value: boolean) => void
-    functions: { loadActivities: () => void, loadPatients: () => void }
+    functions: { loadActivities: () => void, loadPatients: () => void, setShowToast: any }
 }
 
 const Modal: React.FC<ModalProps> = ({ patient, activity, onClick, functions }) => {
@@ -25,8 +25,9 @@ const Modal: React.FC<ModalProps> = ({ patient, activity, onClick, functions }) 
         try {
             const response = await axios.post(`${UrlBack}/updateActivity`, { patientId: patient._id, activity, token })
             functions.loadActivities()
-        } catch (error) {
+        } catch (error: any) {
             console.log(error)
+            functions.setShowToast({ text: error.message, type: 'error' })
         }
     }
 
@@ -37,8 +38,10 @@ const Modal: React.FC<ModalProps> = ({ patient, activity, onClick, functions }) 
         try {
             const response = await sendActivity(data, patient._id)
             functions.loadPatients()
-        } catch (error) {
+            functions.setShowToast({ text: response.message, type: 'success' })
+        } catch (error: any) {
             console.log(error)
+            functions.setShowToast({ text: error.message, type: 'error' })
         }
     }
 
@@ -46,8 +49,10 @@ const Modal: React.FC<ModalProps> = ({ patient, activity, onClick, functions }) 
         try {
             const response = await deleteActivity(patient._id, actId)
             functions.loadPatients()
-        } catch (error) {
+            functions.setShowToast({ text: response.message, type: 'success' })
+        } catch (error: any) {
             console.log(error)
+            functions.setShowToast({ text: error.message, type: 'error' })
         }
     }
     return (

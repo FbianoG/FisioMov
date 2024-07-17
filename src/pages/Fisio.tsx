@@ -9,6 +9,7 @@ import { ActivitiesData, PatientData, UserData } from '../interface/interface'
 
 import { getPatients, getUser } from '../api/user'
 import { getActivities } from '../api/activities'
+import Toast from '../components/Common/Toast'
 
 
 const Fisio = () => {
@@ -21,6 +22,8 @@ const Fisio = () => {
 
     const [user, setUser] = useState<UserData>()
 
+    const [showToast, setShowToast] = useState<any>(false)
+
     useEffect(() => { loadPatients(), loadActivities(), loadUser() }, [])
 
     const loadUser = async () => {
@@ -28,8 +31,9 @@ const Fisio = () => {
             const response = await getUser()
             setUser(response)
             if (response.isPatient) location.href = '/'
-        } catch (error) {
+        } catch (error: any) {
             console.log(error)
+            setShowToast({ text: error.message, type: 'error' })
         }
     }
 
@@ -41,6 +45,7 @@ const Fisio = () => {
             if (patientEdit) setPatientEdit(response.allPatients.find((element: PatientData) => element._id === patientEdit._id))
         } catch (error) {
             console.log(error)
+            setShowToast({ text: error.message, type: 'error' })
         }
     }
 
@@ -50,6 +55,7 @@ const Fisio = () => {
             setActivities(response)
         } catch (error) {
             console.log(error)
+            setShowToast({ text: error.message, type: 'error' })
         }
     }
 
@@ -71,7 +77,9 @@ const Fisio = () => {
                 ))}
             </ul>
 
-            {showModal && patientEdit && <Modal patient={patientEdit} activity={activities} onClick={setShowModal} functions={{ loadPatients, loadActivities }} />}
+            {showModal && patientEdit && <Modal patient={patientEdit} activity={activities} onClick={setShowModal} functions={{ loadPatients, loadActivities, setShowToast }} />}
+            {showToast && <Toast type={showToast.type} onClick={() => setShowToast(false)} text={showToast.text} />}
+
         </div>
     )
 }
