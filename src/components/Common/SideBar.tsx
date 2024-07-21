@@ -23,17 +23,17 @@ const SideBar: React.FC<SideBarProps> = ({ user }) => {
     return (
         <>
             {show && <div className="backdrop" onClick={handleClose}></div>}
-            {innerWidth < 1100 && <button title='Mostrar barra lateral' className="sideBar__btn" onClick={handleShow}>☰</button>}
+            {innerWidth < 1100 && <button title='Mostrar menu' className="sideBar__btn" onClick={handleShow}>☰</button>}
             <div className="sideBar" style={show ? { transform: 'translate(0)' } : {}}>
                 <h1>FisioMov</h1>
                 {!user?.isPatient &&
-                    <ul className="sideBar__list">
+                    <nav className="sideBar__list">
                         <a href='/fisio' className={verifyLinkActive('/fisio')}>Pacientes</a >
                         <a href='/activities' className={verifyLinkActive('/activities')}>Atividades</a>
                         <a href='/dashboard' className={verifyLinkActive('/dashboard')}>Dashboard</a>
                         <a href='' className={verifyLinkActive('/')}>Configurações</a>
                         <a href='/'>Sair</a>
-                    </ul>
+                    </nav>
                 }
                 {user?.isPatient &&
                     <ul className="sideBar__list">

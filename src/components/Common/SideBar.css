@@ -24,7 +24,6 @@
      flex-direction: column;
      padding: 30px 0;
      list-style: none;
-
  }
 
  .sideBar__list a {
@@ -43,8 +42,6 @@
          color: rgb(244, 62, 62);
      }
  }
-
-
 
  .sideBar__list .active {
      background: #212832;
@@ -90,7 +87,6 @@
      color: #aaa;
  }
 
-
  .sideBar__btn {
      padding: 3px 10px;
      position: fixed;
@@ -107,11 +103,16 @@
  .backdrop {
      width: 100vw;
      height: 100vh;
-     background: #0003;
+     background: #0004;
      position: fixed;
      top: 0;
      left: 0;
+     opacity: 0;
+     animation: showBack .5s both;
+ }
 
+ @keyframes showBack {
+    100%{opacity: 1;}
  }
 
  /* MB <= 767 - TB <= 1023 - */
