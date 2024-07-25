@@ -5,6 +5,7 @@ import { createUser, FormLoginData, FormRegisterData, login } from '../../api/us
 import Button from '../Common/Button';
 
 
+
 interface SliderProps {
     type: 'access' | 'register'
     onClick: () => void
@@ -33,11 +34,14 @@ const Slider: React.FC<SliderProps> = ({ type, onClick, changeType }) => {
         }
     }
 
-    const handleRegister = async (data) => {
+    const handleRegister = async (data: FormRegisterData) => {
         setAccess(true)
         try {
+            if (data.src) data.src = data.src[0]
             const response = await createUser(data)
             reset()
+            changeType('access')
+            setLoginAlert(null)
         } catch (error: any) {
             console.log(error)
             setLoginAlert(error.message)
@@ -78,8 +82,8 @@ const Slider: React.FC<SliderProps> = ({ type, onClick, changeType }) => {
                     <input className="slider__form-input" type='password' id='password' {...register('password', { required: true })} required />
                     <label htmlFor="nasc" className="slider__form-label">Data de Nascimento</label>
                     <input className="slider__form-input" type='date' id='nasc' {...register('nasc', { required: true })} required />
-                    {/* <label htmlFor="src" className="slider__form-label">Foto de Perfil</label> */}
-                    {/* <input className="slider__form-input" type='file' id='src' {...register('src')} /> */}
+                    <label htmlFor="src" className="slider__form-label">Foto de Perfil</label>
+                    <input className="slider__form-input" type='file' id='src' {...register('src')} />
                     <p style={{ color: 'indianred' }}>{loginAlert}</p>
                     {access ?
                         <Button text='Aguarde...' type='button' disabled />
