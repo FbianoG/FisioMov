@@ -32,8 +32,11 @@ const login = async (data: FormLoginData) => {
 
 const createUser = async (data: FormRegisterData) => {
 
+    if (data.src) {
+        if (data.src.type !== 'image/jpg' && data.src.type !== 'image/png' && data.src.type !== 'image/jpeg') throw new Error("Só permitido arquivos png, jpg, jpeg.")
+    }
     if (data.src?.size > 4 * 1024 * 1024) throw new Error("O arquivo é maior que 4mb.")
-    if (data.src?.type !== 'image/jpg' && data.src?.type !== 'image/png' && data.src?.type !== 'image/jpeg') throw new Error("Só permitido arquivos png, jpg, jpeg.")
+
     try {
         const response = await axios.post(`${UrlBack}/createUser`, data, {
             headers: {

@@ -35,7 +35,7 @@ const Slider: React.FC<SliderProps> = ({ type, onClick, changeType }) => {
     }
 
     const handleRegister = async (data: FormRegisterData) => {
-        setAccess(true)
+        // setAccess(true)
         try {
             if (data.src) data.src = data.src[0]
             const response = await createUser(data)
